@@ -1,0 +1,8 @@
+{
+  "name": "bookSharingAPI",
+  "version": "1.0.0",
+  "description": "Backend Rest de aplicação de compartilhamento de livros",
+  "main": "index.js",
+  "author": "Rainan Miranda de Jesus",
+  "license": "MIT"
+}
