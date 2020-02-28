@@ -47,7 +47,7 @@ CREATE TABLE book(
     CONSTRAINT FK_bk_category FOREIGN KEY (bk_category) REFERENCES category(cat_id)
 );
 
-CREATE DATABASE book_request(
+CREATE TABLE book_request(
     rq_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     rq_book INT NOT NULL,
     rq_usr INT NOT NULL,
@@ -55,7 +55,7 @@ CREATE DATABASE book_request(
     updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE DATABASE book_share(
+CREATE TABLE book_share(
     sh_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     sh_book INT NOT NULL,
     sh_usr INT NOT NULL,
@@ -63,7 +63,7 @@ CREATE DATABASE book_share(
     updated_at TIMESTAMP NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
-CREATE DATABASE book_match(
+CREATE TABLE book_match(
     mt_id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     mt_request INT NOT NULL,
     mt_share INT NOT NULL,
