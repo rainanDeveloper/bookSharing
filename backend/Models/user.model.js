@@ -37,11 +37,6 @@ module.exports = {
           type: DataTypes.STRING,
           length: 120
         },
-        usr_avatar: {
-          allowNull: false,
-          type: DataTypes.STRING,
-          length: 120
-        },
         usr_data_nasc: {
           allowNull: false,
           type: DataTypes.DATEONLY,
