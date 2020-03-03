@@ -4,5 +4,10 @@
   "description": "Backend Rest de aplicação de compartilhamento de livros",
   "main": "index.js",
   "author": "Rainan Miranda de Jesus",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express-generator": "^4.16.1",
+    "sequelize": "^5.21.5",
+    "sequelize-cli": "^5.5.1"
+  }
 }

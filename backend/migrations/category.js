@@ -1,6 +1,6 @@
 module.exports = {
     up: (queryInterface, DataTypes) => {
-      return queryInterface.createTable('cat_desc', {
+      return queryInterface.createTable('category', {
         cat_id: {
           allowNull: false,
           autoIncrement: true,
@@ -26,6 +26,6 @@ module.exports = {
     },
   
     down: (queryInterface) => {
-      return queryInterface.dropTable('cat_desc');
+      return queryInterface.dropTable('category');
     }
   };
