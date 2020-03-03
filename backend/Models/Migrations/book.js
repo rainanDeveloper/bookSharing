@@ -20,12 +20,20 @@ module.exports = {
         bk_author: {
           allowNull: false,
           type: DataTypes.INTEGER,
-          defaultValue: 1
+          defaultValue: 1,
+          references: {
+            model: 'author',
+            key: 'auth_id'
+          }
         },
         bk_category: {
           allowNull: false,
           type: DataTypes.INTEGER,
-          defaultValue: 1
+          defaultValue: 1,
+          references: {
+            model: 'category',
+            key: 'cat_id'
+          }
         },
         created_at: {
           allowNull: false,

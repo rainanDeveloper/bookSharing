@@ -10,12 +10,20 @@ module.exports = {
             sh_book: {
                 allowNull: false,
                 type: DataTypes.INTEGER,
-                defaultValue: 1
+                defaultValue: 1,
+                references: {
+                    model: 'book',
+                    key: 'bk_id'
+                }
             },
             sh_usr: {
                 allowNull: false,
                 type: DataTypes.INTEGER,
-                defaultValue: 1
+                defaultValue: 1,
+                references: {
+                    model: 'user',
+                    key: 'usr_id'
+                }
             },
             created_at: {
                 allowNull: false,
