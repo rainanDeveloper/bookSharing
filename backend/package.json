@@ -6,6 +6,7 @@
   "author": "Rainan Miranda de Jesus",
   "license": "MIT",
   "dependencies": {
+    "express": "^4.17.1",
     "express-generator": "^4.16.1",
     "mysql2": "^2.1.0",
     "sequelize": "^5.21.5",
