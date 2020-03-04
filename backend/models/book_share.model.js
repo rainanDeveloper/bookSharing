@@ -2,7 +2,7 @@ module.exports=(sequelize, DataTypes)=>{
     const book_share = sequelize.define('book_share', {
         sh_book: DataTypes.INTEGER,
         sh_usr: DataTypes.INTEGER
-    }, {})
+    }, {tableName: 'book_share'})
 
     book_share.associate = (models)=>{
         book_share.belongsTo(models.book, {foreignKey: 'sh_book'})

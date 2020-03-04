@@ -1,7 +1,7 @@
 module.exports = {
     up: (queryInterface, DataTypes) => {
       return queryInterface.createTable('user', {
-        usr_id: {
+        id: {
           allowNull: false,
           autoIncrement: true,
           primaryKey: true,
@@ -53,12 +53,12 @@ module.exports = {
           allowNull: false,
           type: DataTypes.INTEGER
         },
-        created_at: {
+        createdAt: {
           allowNull: false,
           type: DataTypes.DATE,
           defaultValue: DataTypes.NOW
         },
-        updated_at: {
+        updatedAt: {
           allowNull: false,
           type: DataTypes.DATE,
           defaultValue: DataTypes.NOW

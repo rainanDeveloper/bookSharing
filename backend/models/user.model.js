@@ -10,7 +10,7 @@ module.exports=(sequelize, DataTypes)=>{
         usr_latitude: DataTypes.DECIMAL(18,14),
         usr_longitude: DataTypes.DECIMAL(18,14),
         usr_stars: DataTypes.INTEGER
-    }, {})
+    }, {tableName: 'user'})
 
     user.associate = (models)=>{
         user.belongsToMany(models.book, {through: 'book_share', foreignKey: 'sh_user', as: 'donator'})

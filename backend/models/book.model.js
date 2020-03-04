@@ -4,7 +4,7 @@ module.exports=(sequelize, DataTypes)=>{
         bk_subtitle: DataTypes.STRING,
         bk_author: DataTypes.INTEGER,
         bk_category: DataTypes.INTEGER
-    }, {})
+    }, {tableName: 'book'})
 
     book.associate = (models)=>{
         book.belongsTo(models.author, {foreignKey: 'bk_author', as: 'author'})
