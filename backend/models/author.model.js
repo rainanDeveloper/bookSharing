@@ -1,6 +1,7 @@
 module.exports=(sequelize, DataTypes)=>{
     const author = sequelize.define('author', {
-        auth_name: DataTypes.STRING
+        auth_name: DataTypes.STRING,
+        adicionefreezeTableName: true
     }, {})
 
     author.associate = (models)=>{

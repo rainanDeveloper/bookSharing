@@ -1,7 +1,8 @@
 module.exports=(sequelize, DataTypes)=>{
     const book_share = sequelize.define('book_share', {
         sh_book: DataTypes.INTEGER,
-        sh_usr: DataTypes.INTEGER
+        sh_usr: DataTypes.INTEGER,
+        adicionefreezeTableName: true
     }, {})
 
     book_share.associate = (models)=>{

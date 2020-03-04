@@ -9,7 +9,8 @@ module.exports=(sequelize, DataTypes)=>{
         usr_data_nasc: DataTypes.DATEONLY,
         usr_latitude: DataTypes.DECIMAL(18,14),
         usr_longitude: DataTypes.DECIMAL(18,14),
-        usr_stars: DataTypes.INTEGER
+        usr_stars: DataTypes.INTEGER,
+        adicionefreezeTableName: true
     }, {})
 
     user.associate = (models)=>{

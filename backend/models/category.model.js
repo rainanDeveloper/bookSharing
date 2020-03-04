@@ -1,6 +1,7 @@
 module.exports=(sequelize, DataTypes)=>{
     const category = sequelize.define('category', {
-        cat_desc: DataTypes.STRING
+        cat_desc: DataTypes.STRING,
+        adicionefreezeTableName: true
     }, {})
 
     category.associate = (models)=>{

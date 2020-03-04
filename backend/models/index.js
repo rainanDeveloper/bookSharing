@@ -1,7 +1,7 @@
 const fs = require('fs')
 const path = require('path')
 const Sequelize = require('sequelize')
-const config = require(',,/config/config.json')
+const config = require('../config/config.json')
 
 const db = {}
 
@@ -14,7 +14,7 @@ fs.readdirSync(__dirname)
     db[model.name] = model
 })
 
-Object.keys(db).forEach((modelName)=<{
+Object.keys(db).forEach((modelName)=>{
     if (db[modelName].associate) {
         db[modelName].associate(db);
     }

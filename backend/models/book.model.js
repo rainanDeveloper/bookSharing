@@ -3,7 +3,8 @@ module.exports=(sequelize, DataTypes)=>{
         bk_title: DataTypes.STRING,
         bk_subtitle: DataTypes.STRING,
         bk_author: DataTypes.INTEGER,
-        bk_category: DataTypes.INTEGER
+        bk_category: DataTypes.INTEGER,
+        adicionefreezeTableName: true
     }, {})
 
     book.associate = (models)=>{
