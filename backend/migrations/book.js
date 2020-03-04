@@ -1,7 +1,7 @@
 module.exports = {
     up: (queryInterface, DataTypes) => {
       return queryInterface.createTable('book', {
-        bk_id: {
+        id: {
           allowNull: false,
           autoIncrement: true,
           primaryKey: true,
@@ -23,7 +23,7 @@ module.exports = {
           defaultValue: 1,
           references: {
             model: 'author',
-            key: 'auth_id'
+            key: 'id'
           }
         },
         bk_category: {
@@ -32,15 +32,15 @@ module.exports = {
           defaultValue: 1,
           references: {
             model: 'category',
-            key: 'cat_id'
+            key: 'id'
           }
         },
-        created_at: {
+        createdAt: {
           allowNull: false,
           type: DataTypes.DATE,
           defaultValue: DataTypes.NOW
         },
-        updated_at: {
+        updatedAt: {
           allowNull: false,
           type: DataTypes.DATE,
           defaultValue: DataTypes.NOW

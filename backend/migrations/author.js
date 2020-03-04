@@ -1,7 +1,7 @@
 module.exports = {
     up: (queryInterface, DataTypes)=>{
         return queryInterface.createTable('author', {
-            auth_id: {
+            id: {
                 allowNull: false,
                 autoIncrement: true,
                 primaryKey: true,
@@ -12,12 +12,12 @@ module.exports = {
                 type: DataTypes.STRING,
                 length: 120
             },
-            created_at: {
+            createdAt: {
                 allowNull: false,
                 type: DataTypes.DATE,
                 defaultValue: DataTypes.NOW
             },
-            updated_at: {
+            updatedAt: {
                 allowNull: false,
                 type: DataTypes.DATE,
                 defaultValue: DataTypes.NOW
