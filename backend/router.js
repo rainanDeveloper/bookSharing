@@ -1,15 +1,18 @@
 const express = require('express')
+const userController = require('./controllers/userController')
 
 const routes = express.Router()
 
 // CRUD Users
 
-routes.get('/users', (request, response)=>{})
-routes.post('/users', (request, response)=>{})
-routes.get('/users:id', (request, response)=>{})
-routes.put('/users:id', (request, response)=>{})
-routes.delete('/users:id', (request, response)=>{})
+routes.get('/users', userController.list)
+routes.post('/users', userController.store)
+routes.get('/users/:usr_id', userController.show)
+//routes.put('/users/:usr_id', (request, response)=>{})
+routes.delete('/users/:usr_id', userController.delete)
 
 //CRUD authors
 
 //CRUD categories
+
+module.exports = routes
