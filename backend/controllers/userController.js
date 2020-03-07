@@ -40,9 +40,14 @@ module.exports = {
         try {
             const User = await user.findByPk(usr_id)
 
-            console.log("Request successfully found data!")
+            if(User!==null){
+                console.log("Request successfully found data!")
 
-            return response.json(User)
+                return response.json(User)
+            }
+            else{
+                return response.json({success: false, messageError: "User id not found!"})
+            }
         } catch (error) {
             console.log(`Error during data search: ${error}`)
             response.json({success: false, messageError: "Error during data search"})
