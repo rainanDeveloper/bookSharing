@@ -4,6 +4,10 @@ module.exports = {
     async store(request, response){
         const {auth_name} = request.body
 
+        if (auth_name==null){
+            return response.status(400).json({success: false, messageError: `You must specify the "auth_name" (author name) parameter!`}) 
+        }
+
         try {
             Author = await author.create({
                 auth_name: auth_name

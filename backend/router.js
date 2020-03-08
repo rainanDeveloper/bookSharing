@@ -1,6 +1,7 @@
 const express = require('express')
 const userController = require('./controllers/userController')
 const authorController = require('./controllers/authorController')
+const categoryController = require('./controllers/categoryController')
 
 const routes = express.Router()
 
@@ -21,5 +22,11 @@ routes.get('/author/:auth_id', authorController.show)
 routes.delete('/author/:auth_id', authorController.delete)
 
 //CRUD categories
+
+routes.get('/category', categoryController.list)
+routes.post('/category', categoryController.store)
+routes.get('/category/:cat_id', categoryController.show)
+//routes.put('/category/:cat_id', (request, response)=>{})
+routes.delete('/category/:cat_id', categoryController.delete)
 
 module.exports = routes
