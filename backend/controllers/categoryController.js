@@ -4,6 +4,10 @@ module.exports = {
     async store(request, response){
         const {cat_desc} = request.body
 
+        if (cat_desc==null){
+            return response.status(400).json({success: false, messageError: `You must specify the "cat_desc" (category description) parameter!`}) 
+        }
+
         try {
             Category = await category.create({
                 cat_desc: cat_desc

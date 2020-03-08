@@ -4,6 +4,10 @@ module.exports = {
     async store(request, response){
         const {usr_login, usr_pass, usr_name, usr_email, usr_cpf, usr_data_nasc, usr_latitude, usr_longitude} = request.body
 
+        if (usr_login==null||usr_pass==null||usr_name==null||usr_email==null||usr_cpf==null||usr_data_nasc==null||usr_latitude==null||usr_longitude==null){
+            return response.status(400).json({success: false, messageError: `You must specify all the user parameters!`}) 
+        }
+
         User = await user.findOne({where:{usr_email: usr_email}})
 
         if (!User){
