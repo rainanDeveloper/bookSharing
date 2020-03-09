@@ -85,5 +85,20 @@ module.exports = {
         else{
             response.json({success: false, messageError: "User id not found!"})
         }
+    },
+    async this.changeLocation(request, response){
+        const {usr_id, usr_latitude, usr_longitude} = request.body
+
+        const User = await user.findByPk(usr_id)
+
+        if (User && typeof(usr_latitude)=='number' && typeof(usr_longitude)=='number'){
+            User.usr_latitude = usr_latitude
+            User.usr_longitude = usr_longitude
+            await User.save()
+            return response.json({success: true})
+        }
+        else{
+            return response.status(400).json({success: false, messageError: `You must specify parameters!`})
+        }
     }
 }
