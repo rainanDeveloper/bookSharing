@@ -11,6 +11,7 @@ routes.get('/users', userController.list)
 routes.post('/users', userController.store)
 routes.get('/users/:usr_id', userController.show)
 //routes.put('/users/:usr_id', (request, response)=>{})
+routes.put('/users/', userController.changeLocation)
 routes.delete('/users/:usr_id', userController.delete)
 
 //CRUD authors
