@@ -1,4 +1,7 @@
-const { user } = require('../models/');
+const { user } = require('../models/')
+var   jwt = require('jsonwebtoken')
+const config = require('../config/config.json')
+
 
 module.exports = {
     async store(request, response){
@@ -36,6 +39,30 @@ module.exports = {
             console.log(`User already exists!`)
 
             return response.json(User)
+        }
+    },
+    async login(request, response){
+        const {usr_login, usr_pass} = request.body
+        if(typeof(usr_login)=="string"&&typeof(usr_pass)=="string"){
+            User = await user.findAll({
+                where: {
+                    usr_login: usr_login,
+                    usr_pass: usr_pass
+                }
+            })
+            if(User.length>0){
+                const id = User[0].id
+
+                var token = jwt.sign({id}, config.SECRET, {
+                    expiresIn: 300 // expires in 5min
+                })
+
+                response.json({auth: true, token: token})
+            }
+            else{
+                console.log(`Failed login attempt`)
+                return response.json({success: false, messageError: "User not found: login and pass fields does not match or are not in our database!"})
+            }
         }
     },
     async show(request, response){
