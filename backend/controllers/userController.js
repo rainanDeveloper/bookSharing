@@ -1,4 +1,7 @@
-const { user } = require('../models/');
+const { user } = require('../models/')
+var   jwt = require('jsonwebtoken')
+const config = require('../config/config.json')
+
 
 module.exports = {
     async store(request, response){
@@ -38,6 +41,30 @@ module.exports = {
             return response.json(User)
         }
     },
+    async login(request, response){
+        const {usr_login, usr_pass} = request.body
+        if(typeof(usr_login)=="string"&&typeof(usr_pass)=="string"){
+            User = await user.findAll({
+                where: {
+                    usr_login: usr_login,
+                    usr_pass: usr_pass
+                }
+            })
+            if(User.length>0){
+                const id = User[0].id
+
+                var token = jwt.sign({id}, config.SECRET, {
+                    expiresIn: 300 // expires in 5min
+                })
+
+                response.json({auth: true, token: token})
+            }
+            else{
+                console.log(`Failed login attempt`)
+                return response.json({success: false, messageError: "User not found: login and pass fields does not match or are not in our database!"})
+            }
+        }
+    },
     async show(request, response){
         const {usr_id} = request.params
 
@@ -47,7 +74,9 @@ module.exports = {
             if(User!==null){
                 console.log("Request successfully found data!")
 
-                return response.json(User)
+                let {usr_id, usr_login, usr_name, usr_email, usr_avatar, usr_data_nasc, usr_latitude, usr_longitude, usr_stars} = User
+
+                return response.json({usr_id, usr_login, usr_name, usr_email, usr_avatar, usr_data_nasc, usr_latitude, usr_longitude, usr_stars})
             }
             else{
                 return response.json({success: false, messageError: "User id not found!"})
@@ -55,18 +84,6 @@ module.exports = {
         } catch (error) {
             console.log(`Error during data search: ${error}`)
             response.json({success: false, messageError: "Error during data search"})
-        }
-    },
-    async list(request, response){
-
-        try {
-            const Users = await user.findAll()
-
-            console.log("Request successfully found data!")
-
-            return response.json(Users)
-        } catch (error) {
-            console.log(`Error during data search: ${error}`)
         }
     },
     async delete(request, response){
@@ -86,7 +103,7 @@ module.exports = {
             response.json({success: false, messageError: "User id not found!"})
         }
     },
-    async this.changeLocation(request, response){
+    async changeLocation(request, response){
         const {usr_id, usr_latitude, usr_longitude} = request.body
 
         const User = await user.findByPk(usr_id)
