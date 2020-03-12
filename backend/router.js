@@ -2,6 +2,7 @@ const express = require('express')
 const userController = require('./controllers/userController')
 const authorController = require('./controllers/authorController')
 const categoryController = require('./controllers/categoryController')
+const bookController = require('./controllers/bookController')
 
 const routes = express.Router()
 
@@ -30,5 +31,9 @@ routes.post('/category', categoryController.store)
 routes.get('/category/:cat_id', categoryController.show)
 //routes.put('/category/:cat_id', (request, response)=>{})
 routes.delete('/category/:cat_id', categoryController.delete)
+
+// books
+routes.post('/book', bookController.store)
+
 
 module.exports = routes
