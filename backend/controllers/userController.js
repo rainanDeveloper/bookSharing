@@ -65,6 +65,23 @@ module.exports = {
             }
         }
     },
+    async validateJWT(request, response, next){
+        const token = request.headers['x-access-token']
+
+        if(!token){
+            return response.status(401).json({auth: false, message: 'No token provided.'})
+        }
+
+        jwt.verify(token, config.SECRET, async (error, decoded)=>{
+            if(error){
+                return response.status(500).json({auth: false, message: 'Failed to authenticate token.'})
+            }
+
+            request.usr_id = decoded.id
+
+            next()
+        })
+    },
     async show(request, response){
         const {usr_id} = request.params
 
@@ -121,9 +138,9 @@ module.exports = {
             return response.status(401).json({auth: false, message: 'No token provided.'})
         }
 
-        jwt.verify(token, config.SECRET, async (err, decoded)=>{
+        jwt.verify(token, config.SECRET, async (error, decoded)=>{
 
-            if (err){
+            if (error){
                 return response.status(500).json({auth: false, message: 'Failed to authenticate token.'})
             }
 
