@@ -1,5 +1,5 @@
 const { user } = require('../models/')
-var   jwt = require('jsonwebtoken')
+const jwt = require('jsonwebtoken')
 const config = require('../config/config.json')
 
 
@@ -54,7 +54,7 @@ module.exports = {
                 const id = User[0].id
 
                 var token = jwt.sign({id}, config.SECRET, {
-                    expiresIn: 300 // expires in 5min
+                    expiresIn: 3600
                 })
 
                 response.json({auth: true, token: token})
@@ -104,18 +104,33 @@ module.exports = {
         }
     },
     async changeLocation(request, response){
-        const {usr_id, usr_latitude, usr_longitude} = request.body
+        const token = request.headers['x-access-token']
 
-        const User = await user.findByPk(usr_id)
+        if (!token){
+            return response.status(401).json({auth: false, message: 'No token provided.'})
+        }
 
-        if (User && typeof(usr_latitude)=='number' && typeof(usr_longitude)=='number'){
-            User.usr_latitude = usr_latitude
-            User.usr_longitude = usr_longitude
-            await User.save()
-            return response.json({success: true})
-        }
-        else{
-            return response.status(400).json({success: false, messageError: `You must specify parameters!`})
-        }
+        jwt.verify(token, config.SECRET, async (err, decoded)=>{
+
+            if (err){
+                return response.status(500).json({auth: false, message: 'Failed to authenticate token.'})
+            }
+
+            const usr_id = decoded.id
+
+            const {usr_latitude, usr_longitude} = request.body
+
+            const User = await user.findByPk(usr_id)
+
+            if (User && typeof(usr_latitude)=='number' && typeof(usr_longitude)=='number'){
+                User.usr_latitude = usr_latitude
+                User.usr_longitude = usr_longitude
+                await User.save()
+                return response.json({success: true})
+            }
+            else{
+                return response.status(400).json({success: false, messageError: `You must specify parameters!`})
+            }
+        })
     }
 }
