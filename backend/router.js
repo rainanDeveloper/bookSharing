@@ -8,6 +8,7 @@ const routes = express.Router()
 // CRUD Users
 
 routes.post('/users', userController.store)
+routes.get('/users', userController.list)
 routes.get('/users/:usr_id', userController.show)
 routes.post('/users/login', userController.login)
 //routes.put('/users/:usr_id', (request, response)=>{})

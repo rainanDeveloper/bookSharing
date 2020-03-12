@@ -86,6 +86,17 @@ module.exports = {
             response.json({success: false, messageError: "Error during data search"})
         }
     },
+    async list(request, response){
+        try {
+            const Users = await user.findAll({attributes: ['id', 'usr_login', 'usr_name', 'usr_email', 'usr_avatar', 'usr_data_nasc', 'usr_latitude', 'usr_longitude', 'usr_stars']})
+
+            console.log("Request successfully found data!")
+
+            return response.json(Users)
+        } catch (error) {
+            console.log(`Error during data search: ${error}`)
+        }
+    },
     async delete(request, response){
         const {usr_id} = request.params
 
