@@ -18,7 +18,7 @@ module.exports = {
             return response.json(Category)
         } catch (error) {
             console.log(`Error during category creation: ${error}`)
-            return response.json({success: false, messageError: "Error during category creation"})
+            return response.status(500).json({success: false, messageError: "Error during category creation"})
         }
     },
     async show(request, response){
@@ -33,11 +33,11 @@ module.exports = {
                 return response.json(Category)
             }
             else{
-                return response.json({success: false, messageError: "Category id not found!"})
+                return response.status(500).json({success: false, messageError: "Category id not found!"})
             }
         } catch (error) {
             console.log(`Error during data search: ${error}`)
-            response.json({success: false, messageError: "Error during data search"})
+            return response.status(500).json({success: false, messageError: "Error during data search"})
         }
     },
     async list(request, response){
@@ -49,6 +49,7 @@ module.exports = {
             return response.json(Categorys)
         } catch (error) {
             console.log(`Error during data search: ${error}`)
+            return response.status(500).json({success: false, messageError: "Error during data search"})
         }
     },
     async delete(request, response){
@@ -65,7 +66,7 @@ module.exports = {
             }
         }
         else{
-            response.json({success: false, messageError: "Category id not found!"})
+            response.status(500).json({success: false, messageError: "Category id not found!"})
         }
     }
 }
