@@ -2,12 +2,14 @@ const express = require('express')
 const userController = require('./controllers/userController')
 const authorController = require('./controllers/authorController')
 const categoryController = require('./controllers/categoryController')
+const bookController = require('./controllers/bookController')
 
 const routes = express.Router()
 
 // CRUD Users
 
 routes.post('/users', userController.store)
+routes.get('/users', userController.list)
 routes.get('/users/:usr_id', userController.show)
 routes.post('/users/login', userController.login)
 //routes.put('/users/:usr_id', (request, response)=>{})
@@ -29,5 +31,9 @@ routes.post('/category', categoryController.store)
 routes.get('/category/:cat_id', categoryController.show)
 //routes.put('/category/:cat_id', (request, response)=>{})
 routes.delete('/category/:cat_id', categoryController.delete)
+
+// books
+routes.post('/book', bookController.store)
+
 
 module.exports = routes
