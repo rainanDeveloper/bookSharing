@@ -13,7 +13,8 @@ routes.get('/users', userController.list)
 routes.get('/users/:usr_id', userController.show)
 routes.post('/users/login', userController.login)
 //routes.put('/users/:usr_id', (request, response)=>{})
-routes.put('/users/', userController.changeLocation)
+routes.put('/users/location', userController.changeLocation)
+//routes.put('/users/avatar', userController.changeAvatarImage)
 routes.delete('/users/:usr_id', userController.delete)
 
 //CRUD authors
@@ -34,6 +35,9 @@ routes.delete('/category/:cat_id', categoryController.delete)
 
 // books
 routes.post('/book', bookController.store)
+routes.get('/book/:bk_id', bookController.show)
+routes.get('/book', bookController.list)
+routes.delete('/book/:bk_id', userController.validateJWT, bookController.delete)
 
 
 module.exports = routes
