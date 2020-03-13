@@ -9,8 +9,8 @@ module.exports=(sequelize, DataTypes)=>{
     book.associate = (models)=>{
         book.belongsTo(models.author, {foreignKey: 'bk_author'})
         book.belongsTo(models.category, {foreignKey: 'bk_category'})
-        book.belongsToMany(models.user, {through: 'book_share', foreignKey: 'sh_book', as: 'sharedBook'})
-        book.belongsToMany(models.user, {through: 'book_request', foreignKey: 'rq_book', as: 'desiredBook'})
+        book.belongsToMany(models.user, {through: 'book_share', foreignKey: 'sh_book'})
+        book.belongsToMany(models.user, {through: 'book_request', foreignKey: 'rq_book'})
     }
 
     return book

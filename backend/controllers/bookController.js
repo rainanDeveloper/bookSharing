@@ -46,5 +46,22 @@ module.exports = {
             console.log(`Error during data search: ${error}`)
             return response.status(500).json({success: false, messageError: "Error during data search"})
         }
+    },
+    async delete(request, response){
+        const {bk_id} = request.params
+
+        const Book = await book.findByPk(bk_id)
+
+        if (Book){
+            if (Book.destroy()){
+                response.json({success: true})
+            }
+            else{
+                response.json({success: true})
+            }
+        }
+        else{
+            response.status(500).json({success: false, messageError: "Book id not found!"})
+        }
     }
 }
