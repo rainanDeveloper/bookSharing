@@ -4,7 +4,7 @@ module.exports=(sequelize, DataTypes)=>{
     }, {tableName: 'author'})
 
     author.associate = (models)=>{
-        author.hasMany(models.book, {as: 'books'})
+        author.hasMany(models.book, {foreignKey: 'bk_author'})
     }
 
     return author
