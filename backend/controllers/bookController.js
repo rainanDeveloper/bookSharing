@@ -48,20 +48,23 @@ module.exports = {
         }
     },
     async delete(request, response){
-        const {bk_id} = request.params
+        const {usr_id} = request
+        if(usr_id!==null){
+            const {bk_id} = request.params
 
-        const Book = await book.findByPk(bk_id)
+            const Book = await book.findByPk(bk_id)
 
-        if (Book){
-            if (Book.destroy()){
-                response.json({success: true})
+            if (Book){
+                if (Book.destroy()){
+                    response.json({success: true})
+                }
+                else{
+                    response.json({success: true})
+                }
             }
             else{
-                response.json({success: true})
+                response.status(500).json({success: false, messageError: "Book id not found!"})
             }
-        }
-        else{
-            response.status(500).json({success: false, messageError: "Book id not found!"})
         }
     }
 }
