@@ -38,6 +38,6 @@ routes.post('/book', bookController.store)
 routes.get('/book/:bk_id', bookController.show)
 routes.get('/book', bookController.list)
 routes.delete('/book/:bk_id', userController.validateJWT, bookController.delete)
-
+routes.post('/book/request/', userController.validateJWT, bookController.storeBookRequest)
 
 module.exports = routes
