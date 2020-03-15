@@ -1,10 +1,11 @@
 const { book } = require('../models/')
+const { book_request } = require('../models/')
 
 module.exports = {
     async store(request, response){
         const {bk_title, bk_subtitle, bk_author, bk_book} = request.body
 
-        if (typeof(bk_title)!=='string'||typeof(bk_subtitle)!=='string'||typeof(bk_author)!=='number'||typeof(bk_book)!=='number'){
+        if (typeof(bk_title)=='null'||typeof(bk_subtitle)=='null'||typeof(bk_author)=='null'||typeof(bk_book)=='null'){
             return response.status(400).json({success: false, messageError: `You must specify all the book parameters!`}) 
         }
 
@@ -64,6 +65,27 @@ module.exports = {
             }
             else{
                 response.status(500).json({success: false, messageError: "Book id not found!"})
+            }
+        }
+    },
+    async storeBookRequest(request, response){
+        const {usr_id} = request
+        if(usr_id!==null){
+            const {bk_id} = request.body
+            
+            const Book = await book.findByPk(bk_id)
+
+            if (Book){
+                try {
+                    const bkRequest = await book_request.create({rq_book: bk_id, rq_usr: usr_id})
+                    
+                    console.log("Book request successfully!")
+
+                    return response.json(bkRequest)
+                } catch (error) {
+                    console.log(`Error while doing book request: ${error}`)
+                    return response.status(500).json({success: false, messageError: "Error while doing book request"})
+                }
             }
         }
     }
