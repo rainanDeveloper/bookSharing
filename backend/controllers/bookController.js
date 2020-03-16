@@ -64,7 +64,7 @@ module.exports = {
                 }
             }
             else{
-                response.status(500).json({success: false, messageError: "Book id not found!"})
+                response.status(400).json({success: false, messageError: "Book id not found!"})
             }
         }
     },

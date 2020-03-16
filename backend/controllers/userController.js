@@ -32,7 +32,7 @@ module.exports = {
                 return response.json(User)
             } catch (error) {
                 console.log(`Error during user creation: ${error}`)
-                return response.json({success: false, messageError: "Error during user creation"})
+                return response.status(500).json({success: false, messageError: "Error during user creation"})
             }
         }
         else{
@@ -61,7 +61,7 @@ module.exports = {
             }
             else{
                 console.log(`Failed login attempt`)
-                return response.json({success: false, messageError: "User not found: login and pass fields does not match or are not in our database!"})
+                return response.status(401).json({success: false, messageError: "User not found: login and pass fields does not match or are not in our database!"})
             }
         }
     },
@@ -96,11 +96,11 @@ module.exports = {
                 return response.json({usr_id, usr_login, usr_name, usr_email, usr_avatar, usr_data_nasc, usr_latitude, usr_longitude, usr_stars})
             }
             else{
-                return response.json({success: false, messageError: "User id not found!"})
+                return response.status(400).json({success: false, messageError: "User id not found!"})
             }
         } catch (error) {
             console.log(`Error during data search: ${error}`)
-            response.json({success: false, messageError: "Error during data search"})
+            response.status(500).json({success: false, messageError: "Error during data search"})
         }
     },
     async list(request, response){
@@ -111,7 +111,7 @@ module.exports = {
 
             return response.json(Users)
         } catch (error) {
-            console.log(`Error during data search: ${error}`)
+            console.status(500).log(`Error during data search: ${error}`)
         }
     },
     async delete(request, response){
@@ -128,7 +128,7 @@ module.exports = {
             }
         }
         else{
-            response.json({success: false, messageError: "User id not found!"})
+            response.status(500).json({success: false, messageError: "User id not found!"})
         }
     },
     async changeLocation(request, response){
