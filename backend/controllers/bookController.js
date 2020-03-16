@@ -1,5 +1,6 @@
 const { book } = require('../models/')
-const { book_request } = require('../models/')
+const { sharerequest } = require('../models/')
+const { book_share } = require('../models/')
 
 module.exports = {
     async store(request, response){
@@ -85,6 +86,27 @@ module.exports = {
                 } catch (error) {
                     console.log(`Error while doing book request: ${error}`)
                     return response.status(500).json({success: false, messageError: "Error while doing book request"})
+                }
+            }
+        }
+    },
+    async storeBookShare(request, response){
+        const {usr_id} = request
+        if(usr_id!==null){
+            const {bk_id} = request.body
+            
+            const Book = await book.findByPk(bk_id)
+
+            if (Book){
+                try {
+                    const bkShare = await book_share.create({sh_book: bk_id, sh_usr: usr_id})
+                    
+                    console.log("Book shared successfully!")
+
+                    return response.json(bkShare)
+                } catch (error) {
+                    console.log(`Error during sharing book: ${error}`)
+                    return response.status(500).json({success: false, messageError: "Error during sharing book"})
                 }
             }
         }
