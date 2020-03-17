@@ -18,7 +18,7 @@ module.exports = {
             return response.json(Author)
         } catch (error) {
             console.log(`Error during author creation: ${error}`)
-            return response.json({success: false, messageError: "Error during author creation"})
+            return response.status(500).json({success: false, messageError: "Error during author creation"})
         }
     },
     async show(request, response){
@@ -33,7 +33,7 @@ module.exports = {
                 return response.json(Author)
             }
             else{
-                return response.json({success: false, messageError: "Author id not found!"})
+                return response.status(500).json({success: false, messageError: "Author id not found!"})
             }
         } catch (error) {
             console.log(`Error during data search: ${error}`)
@@ -65,7 +65,7 @@ module.exports = {
             }
         }
         else{
-            response.json({success: false, messageError: "Author id not found!"})
+            response.status(400).json({success: false, messageError: "Author id not found!"})
         }
     }
 }
