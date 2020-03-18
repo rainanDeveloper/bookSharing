@@ -1,5 +1,5 @@
 const { book } = require('../models/')
-const { sharerequest } = require('../models/')
+const { book_request } = require('../models/')
 const { book_share } = require('../models/')
 
 module.exports = {
@@ -72,15 +72,15 @@ module.exports = {
     async storeBookRequest(request, response){
         const {usr_id} = request
         if(usr_id!==null){
-            const {bk_id} = request.body
+            const {bk_id, rq_distance} = request.body
             
             const Book = await book.findByPk(bk_id)
 
             if (Book){
                 try {
-                    const bkRequest = await book_request.create({rq_book: bk_id, rq_usr: usr_id})
+                    const bkRequest = await book_request.create({rq_book: bk_id, rq_usr: usr_id, rq_distance})
                     
-                    console.log("Book request successfully!")
+                    console.log("Book requested successfully!")
 
                     return response.json(bkRequest)
                 } catch (error) {

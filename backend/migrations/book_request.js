@@ -25,6 +25,11 @@ module.exports = {
                     key: 'id'
                 }
             },
+            rq_distance: {
+                allowNull: false,
+                type: DataTypes.DECIMAL(18, 10),
+                defaultValue: 10
+            },
             createdAt: {
                 allowNull: false,
                 type: DataTypes.DATE,
