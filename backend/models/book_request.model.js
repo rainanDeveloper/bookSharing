@@ -1,7 +1,8 @@
 module.exports=(sequelize, DataTypes)=>{
     const book_request = sequelize.define('book_request', {
         rq_book: DataTypes.INTEGER,
-        rq_usr: DataTypes.INTEGER
+        rq_usr: DataTypes.INTEGER,
+        rq_distance: DataTypes.DECIMAL(18, 10)
     }, {tableName: 'book_request'})
 
     book_request.associate = (models)=>{

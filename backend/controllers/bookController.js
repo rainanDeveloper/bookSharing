@@ -1,6 +1,8 @@
 const { book } = require('../models/')
-const { sharerequest } = require('../models/')
+const { user } = require('../models/')
+const { book_request } = require('../models/')
 const { book_share } = require('../models/')
+const { book_match } = require('../models/')
 
 module.exports = {
     async store(request, response){
@@ -72,17 +74,38 @@ module.exports = {
     async storeBookRequest(request, response){
         const {usr_id} = request
         if(usr_id!==null){
-            const {bk_id} = request.body
+            const {bk_id, rq_distance} = request.body
             
             const Book = await book.findByPk(bk_id)
 
             if (Book){
                 try {
-                    const bkRequest = await book_request.create({rq_book: bk_id, rq_usr: usr_id})
+                    const bkRequest = await book_request.create({rq_book: bk_id, rq_usr: usr_id, rq_distance})
                     
-                    console.log("Book request successfully!")
+                    console.log("Book requested successfully!")
 
-                    return response.json(bkRequest)
+                    const bkShMatch = await book_share.findOne({where: {sh_book: bkRequest.rq_book}})
+
+                    if(bkShMatch){
+                        
+                        const donator = await user.findByPk(bkShMatch.sh_usr)
+                        const requester = await user.findByPk(usr_id)
+
+                        if(donator){
+                            let horizontalDegDiff = requester.usr_latitude - donator.usr_latitude
+                            let verticalDegDiff = requester.usr_longitude - donator.usr_longitude
+
+                            let distanceBetweenUsers = Math.pow((Math.pow(horizontalDegDiff, 2)+Math.pow(verticalDegDiff, 2)), 0.5)
+
+                            let distanceInKm = distanceBetweenUsers*111.045
+
+                            return response.json({distance: distanceInKm})
+                        }
+                    }
+                    else{
+                        return response.json(bkRequest)
+                    }
+                    
                 } catch (error) {
                     console.log(`Error while doing book request: ${error}`)
                     return response.status(500).json({success: false, messageError: "Error while doing book request"})
