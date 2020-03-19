@@ -74,7 +74,7 @@ module.exports = {
 
         jwt.verify(token, config.SECRET, async (error, decoded)=>{
             if(error){
-                return response.status(500).json({auth: false, message: 'Failed to authenticate token.'})
+                return response.status(401).json({auth: false, message: 'Failed to authenticate token.'})
             }
 
             request.usr_id = decoded.id
