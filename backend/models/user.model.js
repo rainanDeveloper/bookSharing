@@ -13,8 +13,8 @@ module.exports=(sequelize, DataTypes)=>{
     }, {tableName: 'user'})
 
     user.associate = (models)=>{
-        user.belongsToMany(models.book, {through: 'book_share', foreignKey: 'sh_usr'})
-        user.belongsToMany(models.book, {through: 'book_request', foreignKey: 'rq_usr'})
+        user.belongsToMany(models.book, {as:'requestedBook', through: { model: models.book_share, unique: false }, foreignKey: 'sh_usr'})
+        user.belongsToMany(models.book, {as:'sharedBook', through: { model: models.book_request, unique: false }, foreignKey: 'rq_usr'})
     }
 
     return user
