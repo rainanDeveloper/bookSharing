@@ -80,7 +80,12 @@ module.exports = {
 
             if (Book){
                 try {
-                    const bkRequest = await book_request.create({rq_book: bk_id, rq_usr: usr_id, rq_distance})
+
+                    let bkRequest = await book_request.findOne({where: {rq_book: bk_id, rq_usr: usr_id}})
+
+                    if (bkRequest==null){
+                        bkRequest = await book_request.create({rq_book: bk_id, rq_usr: usr_id, rq_distance})
+                    }
                     
                     console.log("Book requested successfully!")
 
@@ -99,7 +104,28 @@ module.exports = {
 
                             let distanceInKm = distanceBetweenUsers*111.045
 
-                            return response.json({distance: distanceInKm})
+                            if (distanceInKm<=bkRequest.rq_distance){
+                                try {
+                                    let bookMatch = await book_match.findOne({where: {mt_request: bkRequest.id, mt_share: bkShMatch.id}})
+
+                                    if(bookMatch==null){
+                                        bookMatch = await book_match.create({mt_request: bkRequest.id, mt_share: bkShMatch.id})
+                                    }
+
+                                    return response.json({
+                                            match: true,
+                                            matchId: bookMatch.id,
+                                            request: bkRequest,
+                                            distance: distanceInKm
+                                        })
+                                } catch (error) {
+                                    console.log(`Error while performing match between users: ${error}`)
+                                    return response.status(500).json({success: false, messageError: "Error: a match was supose to happen, but something went wrong!"})
+                                }
+                            }
+                            else{
+                                return response.json(bkRequest)
+                            }
                         }
                     }
                     else{
