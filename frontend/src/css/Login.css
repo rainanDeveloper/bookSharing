@@ -1,0 +1,40 @@
+div.App {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #dae9f8;
+}
+
+div.LoginForm {
+    width: 100%;
+    max-width: 420px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: #ccc 0 0 15px;
+    padding: 10px;
+}
+
+div.LoginForm label {
+    color: #888;
+}
+
+div.LoginForm input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 1px #ccc;
+    margin: 5px 0;
+}
+
+div.LoginForm button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    margin: 5px 0;
+    color: white;
+    cursor: pointer;
+    background-color: #2f94e0;
+    font-size: 20px;
+}
