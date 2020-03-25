@@ -1,10 +1,10 @@
 div.App {
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #dae9f8;
+    background-color: rgb(236, 241, 253);
+    padding: 5px;
 }
 
 div.LoginForm {
@@ -12,8 +12,8 @@ div.LoginForm {
     max-width: 420px;
     background-color: white;
     border-radius: 5px;
-    box-shadow: #ccc 0 0 15px;
-    padding: 10px;
+    box-shadow: #bbb 0 0 35px;
+    padding: 20px;
 }
 
 div.LoginForm label {
@@ -24,8 +24,11 @@ div.LoginForm input {
     width: 100%;
     padding: 10px;
     border: none;
-    border-bottom: solid 1px #ccc;
+    border: solid 2px #ccc;
+    border-radius: 5px;
     margin: 5px 0;
+    font-size: 15px;
+    color: #888;
 }
 
 div.LoginForm button {
@@ -36,5 +39,11 @@ div.LoginForm button {
     color: white;
     cursor: pointer;
     background-color: #2f94e0;
-    font-size: 20px;
+    border-radius: 5px;
+    font-size: 15px;
+    transition: background-color ease-in-out 0.2s;
+}
+
+div.LoginForm button:hover{
+    background-color: #2db0d8;
 }

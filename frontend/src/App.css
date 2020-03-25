@@ -4,8 +4,19 @@
 box-sizing: border-box;
 }
 
-body{
-  color: #888
+html, body{
+  color: #888;
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Roboto', 'sans-serif';
+}
+
+#root {
+  height: 100%;
+}
+
+div.App {
+  height: 100%;
 }
 
 h1.projectTitle {
@@ -39,4 +50,9 @@ h1.projectTitle img {
 a{
   color: #2f94e0;
   text-decoration: none;
+  transition: background-color ease-in-out 0.2s;
+}
+
+a:hover{
+  color: #2db0d8;
 }

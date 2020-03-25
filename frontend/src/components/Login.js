@@ -11,7 +11,7 @@ function Login() {
         <input id="Login" name="Login" type="text"/>
         <label htmlFor="Senha">Senha</label>
         <input id="Senha" name="Senha" type="password"/>
-        <p>Não tem uma conta? <a href="#">Cadastre-se</a></p>
+        <p>Não tem uma conta? <a href="/SignUp">Cadastre-se</a></p>
         <button>Login</button>
       </div>
     );
