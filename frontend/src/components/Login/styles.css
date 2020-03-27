@@ -1,0 +1,34 @@
+div.App {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(236, 241, 253);
+    padding: 5px;
+}
+
+div.LoginForm {
+    width: 100%;
+    max-width: 480px;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: #bbb 0 0 35px;
+    padding: 40px;
+}
+
+div.LoginForm .projectTitle {
+    padding-bottom: 35px;
+}
+
+
+div.LoginForm input + input {
+    margin-top: 15px;
+}
+
+div.LoginForm p {
+    margin: 10px 0;
+}
+
+.loginButton {
+    margin-top: 35px;
+}
