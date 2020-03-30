@@ -75,8 +75,12 @@ input {
   margin: 5px 0;
   font-size: 15px;
   color: #888;
-  font-size: 18px;
+  font-size: 15px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+}
+
+input:focus {
+  border: solid 1px #2f94e0;
 }
 
 button {
@@ -89,7 +93,6 @@ button {
   background-color: #2f94e0;
   border-radius: 5px;
   font-size: 15px;
-  font-size: 18px;
   transition: filter ease-in-out 0.2s;
 }
 

@@ -9,8 +9,13 @@ function Login() {
         <h1 className="projectTitle"><img src={logo} alt=""/><p>Book<span>Sharing</span></p></h1>
         <form>
           <input placeholder="E-mail"/>
+          <input placeholder="Nome"/>
           <input placeholder="Login"/>
           <input type="password" placeholder="Senha"/>
+          <div className="input-group">
+            <input type="text" placeholder="CFP"/>
+            <input type="date"/>
+          </div>
           <p>Já possui uma conta? <a href="/">Login</a></p>
           <button className="loginButton">Login</button>
         </form>
