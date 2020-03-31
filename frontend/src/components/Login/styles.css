@@ -22,7 +22,7 @@ div.LoginForm .projectTitle {
 
 
 div.LoginForm input + input {
-    margin-top: 15px;
+    margin-top: 5px;
 }
 
 div.LoginForm p {
@@ -30,5 +30,5 @@ div.LoginForm p {
 }
 
 .loginButton {
-    margin-top: 35px;
+    margin-top: 25px;
 }
