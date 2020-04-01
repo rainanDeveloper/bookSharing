@@ -1,0 +1,25 @@
+.App {
+    justify-content: center;
+    align-items: initial !important;
+}
+
+.DashBoard {
+    width: 100%;
+    max-width: 1220px;
+    height: initial;
+    display: flex;
+    flex-direction: row;
+    justify-content: initial;
+    align-items: initial;
+    padding: 15px;
+}
+
+
+
+.projectTitle img {
+    width: 35px;
+}
+
+.projectTitle p{
+    font-size: 20px;
+}
