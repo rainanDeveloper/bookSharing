@@ -30,11 +30,5 @@ div.LoginForm p {
 }
 
 .loginButton {
-    margin-top: 35px;
-}
-
-.input-group {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+    margin-top: 25px;
 }

@@ -1,0 +1,39 @@
+.SignUp {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 1120px;
+    border-radius: 5px;
+    box-shadow: #bbb 0 0 35px;
+    padding: 35px;
+    background: white;
+}
+
+.SignUp section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+.SignUp section p {
+    padding: 15px;
+    text-align: justify;
+}
+
+
+.projectTitle img {
+    width: 65px;
+}
+
+.input-group{
+    margin-top: 5px;
+}
+
+
+.input-group input {
+    line-height: 25px;
+    margin: 0 !important;
+  }
