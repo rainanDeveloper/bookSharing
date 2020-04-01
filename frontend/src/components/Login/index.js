@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import ReactDOM from 'react-dom';
 import {Link, useHistory} from 'react-router-dom'
+import api from '../../services/api'
 import './styles.css'
 import logo from '../../logo.svg'
 
@@ -8,7 +9,24 @@ function Login() {
     const [login, setLogin] = useState('')
     const [pass, setPass] = useState('')
 
-    // const history = useHistory()
+    const history = useHistory()
+
+    await function handleLogin(event) {
+      event.preventDefault()
+
+      try {
+        const response = await api.post('/users/login', {
+          usr_login: login,
+          usr_pass: pass
+        })
+
+        localStorage.setItem('access-token', response.data.token)
+
+        history.push('/dashboard')
+      } catch (error) {
+        alert('Não foi possível fazer login')
+      }
+    }
 
     return (
       <div className="Login">
