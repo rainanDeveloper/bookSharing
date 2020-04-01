@@ -11,7 +11,7 @@ function Login() {
 
     const history = useHistory()
 
-    await function handleLogin(event) {
+    async function handleLogin(event) {
       event.preventDefault()
 
       try {
@@ -32,7 +32,7 @@ function Login() {
       <div className="Login">
         <div className="LoginForm">
           <h1 className="projectTitle"><img src={logo} alt=""/><p>Book<span>Sharing</span></p></h1>
-          <form>
+          <form onSubmit={handleLogin}>
             <input required={true} value={login} onChange={event=>setLogin(event.target.value)} placeholder="Login"/>
             <input required={true} value={pass} onChange={event=>setPass(event.target.value)} type="password" placeholder="Senha"/>
             <p>Não tem uma conta? <Link to="/SignUp">Cadastre-se</Link></p>
