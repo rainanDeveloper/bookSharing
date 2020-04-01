@@ -80,6 +80,10 @@ input {
   line-height: 25px;
 }
 
+input:focus {
+  border: solid 1px #2f94e0;
+}
+
 button {
   width: 100%;
   padding: 10px;
