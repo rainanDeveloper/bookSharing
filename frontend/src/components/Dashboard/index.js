@@ -13,7 +13,7 @@ function Dashboard(){
     const accessToken = localStorage.getItem('access-token')
 
     useEffect(()=>{
-        api.get('profile',{
+        api.get('book/request',{
             headers:{
                 'x-access-token': accessToken
             }
