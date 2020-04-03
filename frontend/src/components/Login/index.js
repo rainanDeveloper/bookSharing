@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
 import {Link, useHistory} from 'react-router-dom'
 import api from '../../services/api'
 import './styles.css'

@@ -1,14 +1,26 @@
-import React from 'react'
-import ReactDom from 'react-dom'
+import React, {useState, useEffect} from 'react'
 import {Link, useHistory} from 'react-router-dom'
-import {FiSettings} from 'react-icons/fi'
+import {FiSettings, FiTrash2} from 'react-icons/fi'
 import api from '../../services/api'
 import './styles.css'
 import logo from '../../logo.svg'
 
 function Dashboard(){
+    const [requests, setRequests] = useState([])
+
+    const history = useHistory()
 
     const accessToken = localStorage.getItem('access-token')
+
+    useEffect(()=>{
+        api.get('profile',{
+            headers:{
+                'x-access-token': accessToken
+            }
+        }).then(response=>{
+            setRequests(response.data)
+        })
+    }, [accessToken])
 
     return (
         <div className="DashBoard">
@@ -24,39 +36,15 @@ function Dashboard(){
             <div className="dash-itens">
                 <h1>Solicitações</h1>
                 <ul>
-                    <li>
-                        <h1>O mundo assumbrado por demônios</h1>
-                        <h2>A ciência vista como uma vela no escuro</h2>
-                        <p>Autor: Carl Sagan</p>
-                    </li>
-                    <li>
-                        <h1>Titulo</h1>
-                        <h2>Subtitulo</h2>
-                    </li>
-                    <li>
-                        <h1>Titulo</h1>
-                        <h2>Subtitulo</h2>
-                    </li>
-                    <li>
-                        <h1>Titulo</h1>
-                        <h2>Subtitulo</h2>
-                    </li>
-                    <li>
-                        <h1>Titulo</h1>
-                        <h2>Subtitulo</h2>
-                    </li>
-                    <li>
-                        <h1>Titulo</h1>
-                        <h2>Subtitulo</h2>
-                    </li>
-                    <li>
-                        <h1>Titulo</h1>
-                        <h2>Subtitulo</h2>
-                    </li>
-                    <li>
-                        <h1>Titulo</h1>
-                        <h2>Subtitulo</h2>
-                    </li>
+                    {requests.map(request=>(
+                        <li>
+                            <h1>{request.title}</h1>
+                            <h2>A ciência vista como uma vela no escuro</h2>
+                            <p>Autor: Carl Sagan</p>
+
+                            <button className="Delete"><FiTrash2 color="#ccc" size="25px"/></button>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </div>
