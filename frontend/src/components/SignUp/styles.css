@@ -8,6 +8,7 @@
     box-shadow: #bbb 0 0 35px;
     padding: 35px;
     background: white;
+    margin-top: 20px;
 }
 
 .SignUp section {
@@ -23,15 +24,22 @@
     text-align: justify;
 }
 
-
-.projectTitle img {
-    width: 65px;
+.SignUp .projectTitle {
+    margin-bottom: 25px;
+    width: 100%;
 }
 
+.SignUp .projectTitle img {
+    width: 45px;
+    height: 45px !important;
+}
+
+.SignUp .projectTitle p {
+    font-size: 25px;
+}
 .input-group{
     margin-top: 5px;
 }
-
 
 .input-group input {
     line-height: 25px;

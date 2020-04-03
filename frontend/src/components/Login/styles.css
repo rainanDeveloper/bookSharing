@@ -1,9 +1,7 @@
 div.App {
-    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: rgb(236, 241, 253);
     padding: 5px;
 }
 
@@ -14,12 +12,22 @@ div.LoginForm {
     border-radius: 5px;
     box-shadow: #bbb 0 0 35px;
     padding: 40px;
+    margin-top: 20px;
 }
 
 div.LoginForm .projectTitle {
-    padding-bottom: 25px;
+    margin-bottom: 25px;
+    width: 100%;
 }
 
+div.LoginForm .projectTitle img {
+    width: 45px;
+    height: 45px !important;
+}
+
+div.LoginForm .projectTitle p {
+    font-size: 25px;
+}
 
 div.LoginForm input + input {
     margin-top: 5px;

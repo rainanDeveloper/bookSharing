@@ -6,14 +6,14 @@ const { book_match } = require('../models/')
 
 module.exports = {
     async store(request, response){
-        const {bk_title, bk_subtitle, bk_author, bk_book} = request.body
+        const {bk_title, bk_subtitle, bk_author, bk_category} = request.body
 
-        if (typeof(bk_title)=='null'||typeof(bk_subtitle)=='null'||typeof(bk_author)=='null'||typeof(bk_book)=='null'){
+        if (typeof(bk_title)=='null'||typeof(bk_subtitle)=='null'||typeof(bk_author)=='null'||typeof(bk_category)=='null'){
             return response.status(400).json({success: false, messageError: `You must specify all the book parameters!`}) 
         }
 
         try {
-            Book = await book.create({bk_title, bk_subtitle, bk_author, bk_book})
+            Book = await book.create({bk_title, bk_subtitle, bk_author, bk_category})
 
             console.log("Book created successfully!")
 

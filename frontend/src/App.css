@@ -11,17 +11,8 @@
 
 html, body{
   color: #888;
-  height: 100%;
-  overflow: hidden;
   font-family: 'Roboto', 'sans-serif';
-}
-
-#root {
-  height: 100%;
-}
-
-div.App {
-  height: 100%;
+  background-color: rgb(236, 241, 253);
 }
 
 h1.projectTitle {
