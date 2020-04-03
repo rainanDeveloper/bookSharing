@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDom from 'react-dom'
 import {Link, useHistory} from 'react-router-dom'
+import {} from 'react-icons/fi'
 import api from '../../services/api'
 import './styles.css'
 import logo from '../../logo.svg'
