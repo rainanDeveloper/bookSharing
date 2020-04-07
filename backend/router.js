@@ -35,10 +35,11 @@ routes.delete('/category/:cat_id', categoryController.delete)
 
 // books
 routes.post('/book', bookController.store)
-routes.get('/book/:bk_id', bookController.show)
+routes.get('/book/:bk_id/show', bookController.show)
 routes.get('/book', bookController.list)
 routes.delete('/book/:bk_id', userController.validateJWT, bookController.delete)
 routes.post('/book/request/', userController.validateJWT, bookController.storeBookRequest)
+routes.get('/book/request/', userController.validateJWT, bookController.listBookRequests)
 routes.post('/book/share/', userController.validateJWT, bookController.storeBookShare)
 
 module.exports = routes

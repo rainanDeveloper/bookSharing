@@ -1,8 +1,12 @@
+const Sequelize = require('sequelize')
+const config = require('../config/config.json')
 const { book } = require('../models/')
 const { user } = require('../models/')
 const { book_request } = require('../models/')
 const { book_share } = require('../models/')
 const { book_match } = require('../models/')
+
+sequelize = new Sequelize(config)
 
 module.exports = {
     async store(request, response){
@@ -29,7 +33,7 @@ module.exports = {
         try {
             const Book = await book.findByPk(bk_id)
 
-            if(Book!==null){
+            if(Book){
                 console.log("Request successfully found data!")
 
                 return response.json(Book)
@@ -73,7 +77,7 @@ module.exports = {
     },
     async storeBookRequest(request, response){
         const {usr_id} = request
-        if(usr_id!==null){
+        if(usr_id){
             const {bk_id, rq_distance} = request.body
             
             const Book = await book.findByPk(bk_id)
@@ -136,6 +140,18 @@ module.exports = {
                     console.log(`Error while doing book request: ${error}`)
                     return response.status(500).json({success: false, messageError: "Error while doing book request"})
                 }
+            }
+        }
+    },
+    async listBookRequests(request, response){
+        const {usr_id} = request
+        if(usr_id){
+            try {
+                const [bkRequests] = await sequelize.query(`SELECT * FROM book_request INNER JOIN book ON book.id = book_request.rq_book WHERE book_request.rq_usr=${usr_id}`)
+                
+                return response.json(bkRequests)
+            } catch(error) {
+                return response.status(500).json({success: false, messageError: `Error during searching for user requests: ${error}`})
             }
         }
     },
