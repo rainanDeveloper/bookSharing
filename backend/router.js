@@ -46,7 +46,7 @@ routes.delete('/book/:bk_id', userController.validateJWT, bookController.delete)
 
 routes.post('/book/request/', userController.validateJWT, bkRequestController.store)
 routes.get('/book/request/', userController.validateJWT, bkRequestController.list)
-//routes.delete('/book/request/:id', userController.validateJWT, bkRequestController.delete)
+routes.delete('/book/request/:id', userController.validateJWT, bkRequestController.delete)
 
 //CRUD Book shares
 

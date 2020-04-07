@@ -84,5 +84,26 @@ module.exports = {
                 return response.status(500).json({success: false, messageError: `Error during searching for user requests: ${error}`})
             }
         }
+    },
+    async delete(request, response){
+        const {usr_id} = request
+        if(usr_id){
+            try {
+                const {id} = request.params
+
+                const bkRequest = await book_request.findByPk(id)
+
+                if(bkRequest){
+                    if(bkRequest.destroy()){
+                        return response.json({success: true})
+                    }
+                    else{
+                        return response.status(500).json({success: false})
+                    }
+                }
+            } catch (error) {
+                return response.status(400).json({success: false, messageError: "Request id not found!"})
+            }
+        }
     }
 }

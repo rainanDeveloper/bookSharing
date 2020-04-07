@@ -59,7 +59,7 @@ module.exports = {
                     response.json({success: true})
                 }
                 else{
-                    response.json({success: true})
+                    response.status(500).json({success: true})
                 }
             }
             else{
