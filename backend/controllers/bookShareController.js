@@ -1,6 +1,6 @@
 const { user, book, book_request, book_share } = require('../models/')
 
-modules.exports = {
+module.exports = {
     async store(request, response){
         const {usr_id} = request
         if(usr_id!==null){

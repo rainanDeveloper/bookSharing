@@ -77,7 +77,7 @@ module.exports = {
         const {usr_id} = request
         if(usr_id){
             try {
-                const [bkRequests] = await sequelize.query(`SELECT * FROM book_request INNER JOIN book ON book.id = book_request.rq_book INNER JOIN author ON author.id=book.bk_author WHERE book_request.rq_usr=${usr_id}`)
+                const [bkRequests] = await sequelize.query(`SELECT book_request.*, book.bk_title, book.bk_subtitle, author.auth_name FROM book_request INNER JOIN book ON book.id = book_request.rq_book INNER JOIN author ON author.id=book.bk_author WHERE book_request.rq_usr=${usr_id}`)
                 
                 return response.json(bkRequests)
             } catch(error) {
@@ -100,6 +100,9 @@ module.exports = {
                     else{
                         return response.status(500).json({success: false})
                     }
+                }
+                else{
+                    return response.status(404).json({success: false, messageError: "Request not found!"})
                 }
             } catch (error) {
                 return response.status(400).json({success: false, messageError: "Request id not found!"})
