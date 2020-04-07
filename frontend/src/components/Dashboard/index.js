@@ -22,6 +22,20 @@ function Dashboard(){
         })
     }, [accessToken])
 
+    async function deleteRequest(id){
+        try {
+            await api.delete(`book/request/${id}`, {
+                headers:{
+                    'x-access-token': accessToken
+                }
+            })
+    
+            setRequests(requests.filter(request=>request.id!==id))
+        } catch (error) {
+            alert(`Não foi possível deletar solicitação! ${error}`)
+        }
+    }
+
     return (
         <div className="DashBoard">
             <header>
@@ -37,12 +51,12 @@ function Dashboard(){
                 <h1>Solicitações</h1>
                 <ul>
                     {requests.map(request=>(
-                        <li>
-                            <h1>{request.title}</h1>
-                            <h2>A ciência vista como uma vela no escuro</h2>
-                            <p>Autor: Carl Sagan</p>
+                        <li key={request.id}>
+                            <h1>{request.bk_title}</h1>
+                            <h2>{request.bk_subtitle}</h2>
+                            <p>{request.auth_name}</p>
 
-                            <button className="Delete"><FiTrash2 color="#ccc" size="25px"/></button>
+                            <button className="Delete" onClick={()=>deleteRequest(request.id)}><FiTrash2 color="#ccc" size="25px"/></button>
                         </li>
                     ))}
                 </ul>

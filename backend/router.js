@@ -3,6 +3,9 @@ const userController = require('./controllers/userController')
 const authorController = require('./controllers/authorController')
 const categoryController = require('./controllers/categoryController')
 const bookController = require('./controllers/bookController')
+const bkRequestController = require('./controllers/bookRequestController')
+const bkShareController = require('./controllers/bookShareController')
+
 
 const routes = express.Router()
 
@@ -35,10 +38,20 @@ routes.delete('/category/:cat_id', categoryController.delete)
 
 // books
 routes.post('/book', bookController.store)
-routes.get('/book/:bk_id', bookController.show)
+routes.get('/book/:bk_id/show', bookController.show)
 routes.get('/book', bookController.list)
 routes.delete('/book/:bk_id', userController.validateJWT, bookController.delete)
-routes.post('/book/request/', userController.validateJWT, bookController.storeBookRequest)
-routes.post('/book/share/', userController.validateJWT, bookController.storeBookShare)
+
+//CRUD Book requests
+
+routes.post('/book/request/', userController.validateJWT, bkRequestController.store)
+routes.get('/book/request/', userController.validateJWT, bkRequestController.list)
+routes.delete('/book/request/:id', userController.validateJWT, bkRequestController.delete)
+
+//CRUD Book shares
+
+routes.post('/book/share/', userController.validateJWT, bkShareController.store)
+//routes.get('/book/share/', userController.validateJWT, bookController.listBookShare)
+//routes.delete('/book/share/:id', userController.validateJWT, bookController.deleteBookShare)
 
 module.exports = routes
