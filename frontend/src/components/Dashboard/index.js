@@ -38,9 +38,9 @@ function Dashboard(){
                 <ul>
                     {requests.map(request=>(
                         <li>
-                            <h1>{request.title}</h1>
-                            <h2>A ciência vista como uma vela no escuro</h2>
-                            <p>Autor: Carl Sagan</p>
+                            <h1>{request.bk_title}</h1>
+                            <h2>{request.bk_subtitle}</h2>
+                            <p>{request.auth_name}</p>
 
                             <button className="Delete"><FiTrash2 color="#ccc" size="25px"/></button>
                         </li>
