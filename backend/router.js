@@ -4,7 +4,7 @@ const authorController = require('./controllers/authorController')
 const categoryController = require('./controllers/categoryController')
 const bookController = require('./controllers/bookController')
 const bkRequestController = require('./controllers/bookRequestController')
-//const bkShareController = require('./controllers/bookShareController')
+const bkShareController = require('./controllers/bookShareController')
 
 
 const routes = express.Router()
@@ -50,7 +50,7 @@ routes.delete('/book/request/:id', userController.validateJWT, bkRequestControll
 
 //CRUD Book shares
 
-//routes.post('/book/share/', userController.validateJWT, bookController.storeBookShare)
+routes.post('/book/share/', userController.validateJWT, bkShareController.store)
 //routes.get('/book/share/', userController.validateJWT, bookController.listBookShare)
 //routes.delete('/book/share/:id', userController.validateJWT, bookController.deleteBookShare)
 
