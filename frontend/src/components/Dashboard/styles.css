@@ -107,6 +107,80 @@ div.dash-itens ul li h2 {
     margin-bottom: 15px;
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown .dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 0 25px #ccc;
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown.active .dropdown-content {
+    display: block;
+    padding: 0;
+    margin: 0;
+    background: white;
+}
+
+.dropdown.active .dropdown-content ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown.active .dropdown-content ul li {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown.active .dropdown-content ul li button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin: 0;
+    border-radius: 0;
+    color: #aaa;
+    background: white;
+    transition: ease-in-out 0.2s !important;
+}
+
+.dropdown.active .dropdown-content ul li button p {
+    display: inline-block;
+    line-height: 20px !important;
+}
+
+.dropdown.active .dropdown-content ul li button:hover {
+    background-color: #ddd;
+    filter: brightness(110%);
+}
+
+button.AddNew {
+    border-radius: 50%;
+}
+
+button.settings {
+    transition: ease-in-out 0.4s !important;
+}
+
+button.settings:hover {
+    border-radius: 50%;
+    transform: rotate(180deg);
+    filter: brightness(120%)
+}
+
 button.Delete {
     position: absolute;
     display: flex;
