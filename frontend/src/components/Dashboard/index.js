@@ -84,6 +84,19 @@ function Dashboard(){
         modal.classList.add('active')
     }
 
+    function handleModalAddShare(){
+        const modal = document.querySelector("div div.modal")
+
+        setModalContent(
+            <div className="modalContent">
+                <button className="close" onClick={handleCloseModal}><FiX size="20px" color="#aaa"/></button>
+                <header><h1>Compartilhamento</h1></header>
+            </div>
+        )
+
+        modal.classList.add('active')
+    }
+
     function handleSwitchDropdown(event){
         const dropdown = event.target.closest('div.dropdown')
 
@@ -114,7 +127,7 @@ function Dashboard(){
                             <div className="dropdown-content" onMouseLeave={handleSwitchDropdown}>
                                 <ul>
                                     <li><button onClick={handleModalAddRequest}><FiPlus color="#ccc" size="20px"/> <p> Solicitação</p></button></li>
-                                    <li><button><FiPlus color="#ccc" size="20px"/> <p> Compartilhamento</p></button></li>
+                                    <li><button onClick={handleModalAddShare}><FiPlus color="#ccc" size="20px"/> <p> Compartilhamento</p></button></li>
                                 </ul>
                             </div>
                         </div>
