@@ -14,6 +14,61 @@
     padding: 15px;
 }
 
+div.modal {
+    position: fixed;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+div.modal.active {
+    display: flex;
+}
+
+div.modal div.modalContent {
+    background: white;
+    position: relative;
+    min-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 25px #aaa;
+    font-size: 15px;
+}
+
+div.modal div.modalContent div{
+    padding: 10px 0;
+}
+
+div.modal div.modalContent div .selector-group {
+    display: flex;
+    flex-direction: column;
+}
+
+div.modal div button.close {
+    position: absolute;
+    width: unset;
+    height: initial;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    margin: 0;
+    background: transparent;
+}
+
+div.modal div button.close:hover {
+    filter: brightness(120%);
+}
+
+div.modal div header h1 {
+    font-size: 20px !important;
+}
+
 .DashBoard header {
     display: flex;
     flex-direction: row;
@@ -105,6 +160,80 @@ div.dash-itens ul li h2 {
     font-size: 14px;
     color: #c9c9c9;
     margin-bottom: 15px;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown .dropdown-content{
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 0 25px #ccc;
+    padding: 12px 16px;
+    z-index: 1;
+}
+
+.dropdown.active .dropdown-content {
+    display: block;
+    padding: 0;
+    margin: 0;
+    background: white;
+}
+
+.dropdown.active .dropdown-content ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown.active .dropdown-content ul li {
+    display: flex;
+    flex-direction: row;
+    justify-content: stretch;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.dropdown.active .dropdown-content ul li button {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    margin: 0;
+    border-radius: 0;
+    color: #aaa;
+    background: white;
+    transition: ease-in-out 0.2s !important;
+}
+
+.dropdown.active .dropdown-content ul li button p {
+    display: inline-block;
+    line-height: 20px !important;
+}
+
+.dropdown.active .dropdown-content ul li button:hover {
+    background-color: #ddd;
+    filter: brightness(110%);
+}
+
+button.AddNew {
+    border-radius: 50%;
+}
+
+button.settings {
+    transition: ease-in-out 0.4s !important;
+}
+
+button.settings:hover {
+    border-radius: 50%;
+    transform: rotate(180deg);
+    filter: brightness(120%)
 }
 
 button.Delete {
