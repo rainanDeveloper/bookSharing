@@ -14,6 +14,61 @@
     padding: 15px;
 }
 
+div.modal {
+    position: fixed;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left:0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+div.modal.active {
+    display: flex;
+}
+
+div.modal div.modalContent {
+    background: white;
+    position: relative;
+    min-width: 400px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 25px #aaa;
+    font-size: 15px;
+}
+
+div.modal div.modalContent div{
+    padding: 10px 0;
+}
+
+div.modal div.modalContent div .selector-group {
+    display: flex;
+    flex-direction: column;
+}
+
+div.modal div button.close {
+    position: absolute;
+    width: unset;
+    height: initial;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    margin: 0;
+    background: transparent;
+}
+
+div.modal div button.close:hover {
+    filter: brightness(120%);
+}
+
+div.modal div header h1 {
+    font-size: 20px !important;
+}
+
 .DashBoard header {
     display: flex;
     flex-direction: row;
