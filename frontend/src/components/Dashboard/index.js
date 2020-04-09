@@ -9,6 +9,10 @@ function Dashboard(){
     const [requests, setRequests] = useState([])
     const [modalContent, setModalContent] = useState(<div/>)
 
+    const [bookInput, setBookInput] = useState('')
+    const [authorInput, setAuthorInput] = useState('')
+    const [categoryInput, setCategoryInput] = useState('')
+
     const history = useHistory()
 
     const accessToken = localStorage.getItem('access-token')
@@ -57,25 +61,10 @@ function Dashboard(){
                 <div className="formSolicitacao">
                     <form>
                         <div className="input-group">
-                            <div className="selector-group">
-                                <label>Categoria</label>
-                                <select>
-                                    <option value="1">Categoria 1</option>
-                                </select>
-                            </div>
-                            <div className="selector-group">
-                                <label>Autor</label>
-                                <select>
-                                    <option value="1">Autor 1</option>
-                                </select>
-                            </div>
+                            <input value={categoryInput} onChange={event=>setCategoryInput(event.target.value)} placeholder="Categoria"/>
+                            <input value={authorInput} onChange={event=>setAuthorInput(event.target.value)} placeholder="Autor"/>
                         </div>
-                        <div className="selector-group">
-                            <label>Autor</label>
-                            <select>
-                                <option value="1">Livro</option>
-                            </select>
-                        </div>
+                        <input value={bookInput} onChange={event=>setBookInput(event.target.value)} placeholder="Livro"/>
                     </form>
                 </div>
             </div>
@@ -91,6 +80,15 @@ function Dashboard(){
             <div className="modalContent">
                 <button className="close" onClick={handleCloseModal}><FiX size="20px" color="#aaa"/></button>
                 <header><h1>Compartilhamento</h1></header>
+                <div className="formCompartilhamento">
+                    <form>
+                        <div className="input-group">
+                            <input value={categoryInput} onChange={event=>setCategoryInput(event.target.value)} placeholder="Categoria"/>
+                            <input value={authorInput} onChange={event=>setAuthorInput(event.target.value)} placeholder="Autor"/>
+                        </div>
+                        <input value={bookInput} onChange={event=>setBookInput(event.target.value)} placeholder="Livro"/>
+                    </form>
+                </div>
             </div>
         )
 
@@ -114,7 +112,7 @@ function Dashboard(){
     }
 
     return (
-        <div>
+        <div className="generalContent">
             <div className="modal">
                 {modalContent}
             </div>
