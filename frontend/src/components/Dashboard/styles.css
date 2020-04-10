@@ -84,6 +84,7 @@ div.modal div header h1 {
     width: 100%;
     background: white;
     box-shadow: 0 0 15px #ccc;
+    z-index: 1;
 }
 
 .DashBoard header h1 {
@@ -265,4 +266,30 @@ button.Delete {
 
 button.Delete:hover {
     filter: brightness(110%);
+}
+
+@media (max-width: 600px){
+    .DashBoard .projectTitle{
+        display: none !important;
+    }
+
+    .DashBoard header div.menu {
+        width: 100% !important;
+    }
+
+    .DashBoard header div.menu h1 {
+        text-align: left;
+    }
+
+    div.dash-itens ul {
+        display: grid;
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 1000px){
+    div.dash-itens ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }
