@@ -84,6 +84,7 @@ div.modal div header h1 {
     width: 100%;
     background: white;
     box-shadow: 0 0 15px #ccc;
+    z-index: 1;
 }
 
 .DashBoard header h1 {
@@ -94,10 +95,19 @@ div.modal div header h1 {
 
 .DashBoard header div.menu{
     position: relative;
-    width: 500px;
+    width: 600px;
     display: flex;
+    align-items: center;
     justify-content: flex-end;
     margin: 15px;
+}
+
+.DashBoard header div.menu h1 {
+    width: 100%;
+    text-align: right;
+    display: inline;
+    font-size: 22px;
+    padding: 0;
 }
 
 .DashBoard header div.menu button {
@@ -210,6 +220,7 @@ div.dash-itens ul li h2 {
     display: flex;
     width: 100%;
     align-items: center;
+    justify-content: left;
     margin: 0;
     border-radius: 0;
     color: #aaa;
@@ -235,7 +246,7 @@ button.settings {
     transition: ease-in-out 0.4s !important;
 }
 
-button.settings:hover {
+button.settings:hover, .dropdown.active button.settings {
     border-radius: 50%;
     transform: rotate(180deg);
     filter: brightness(120%)
@@ -255,4 +266,30 @@ button.Delete {
 
 button.Delete:hover {
     filter: brightness(110%);
+}
+
+@media (max-width: 600px){
+    .DashBoard .projectTitle{
+        display: none !important;
+    }
+
+    .DashBoard header div.menu {
+        width: 100% !important;
+    }
+
+    .DashBoard header div.menu h1 {
+        text-align: left;
+    }
+
+    div.dash-itens ul {
+        display: grid;
+        grid-template-columns: 1fr !important;
+    }
+}
+
+@media (max-width: 1000px){
+    div.dash-itens ul {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
 }

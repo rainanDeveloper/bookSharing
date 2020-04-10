@@ -5,6 +5,10 @@ module.exports = {
         const {usr_id} = request
         if(usr_id!==null){
             const {bk_id} = request.body
+
+            if(!bk_id){
+                return response.status(400).json({success: false, messageError: "You must specify the book id!"})
+            }
             
             const Book = await book.findByPk(bk_id)
 

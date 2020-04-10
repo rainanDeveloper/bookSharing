@@ -1,10 +1,12 @@
-import React, {useState} from 'react';
-import {Link} from 'react-router-dom'
-import ReactDOM from 'react-dom';
+import React, {useState} from 'react'
+import {Link, useHistory} from 'react-router-dom'
+import api from '../../services/api'
 import './styles.css'
 import logo from '../../logo.svg'
 
 function Login() {
+
+    const history = useHistory()
 
     const [email, setEmail] = useState('')
     const [login, setLogin] = useState('')
@@ -12,10 +14,47 @@ function Login() {
     const [name, setName] = useState('')
     const [cpf, setCpf] = useState('')
     const [date, setDate] = useState('')
+    
+    const geolocationOptions = {
+      timeout: 10000
+    };
+
+    let usr_latitude=0
+    let usr_longitude=0
+
+    navigator.geolocation.getCurrentPosition((position)=>{
+      usr_latitude=position.coords.latitude
+      usr_longitude=position.coords.longitude
+
+      console.log(`Position: ${usr_latitude}:${usr_longitude}`)
+    }, (error)=>{
+      console.error(`Error during position aquiring: ${error.message}`)
+    }, geolocationOptions)
 
 
     function CpfMask(CPF) {
       setCpf(CPF.replace(/^(\d{3})/g,'$1.').replace(/^(\d{3})\.(\d{3})/g,'$1.$2.').replace(/^(\d{3})\.(\d{3})\.(\d{3})/g,'$1.$2.$3-'))
+    }
+
+    async function handleSignUp(event){
+      event.preventDefault()
+
+      try {
+        await api.post('/users/', {
+          usr_login: login,
+          usr_pass: pass,
+          usr_name: name,
+          usr_email: email,
+          usr_cpf: cpf,
+          usr_data_nasc: date,
+          usr_latitude,
+          usr_longitude 
+        })
+
+        history.push('/')
+      } catch (error) {
+        alert('Não foi possível criar usuário!')
+      }
     }
 
     return (
@@ -26,7 +65,7 @@ function Login() {
           <span>Cadastre-se!</span>
         </section>
         <div className="LoginForm">
-          <form>
+          <form onSubmit={handleSignUp}>
             <input required={true} value={email} onChange={event=>setEmail(event.target.value)} type="email" placeholder="E-mail"/>
             <input required={true} value={login} onChange={event=>setLogin(event.target.value)} placeholder="Login"/>
             <input required={true} value={pass} onChange={event=>setPass(event.target.value)} type="password" placeholder="Senha"/>

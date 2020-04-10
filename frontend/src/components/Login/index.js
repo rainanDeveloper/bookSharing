@@ -20,6 +20,7 @@ function Login() {
         })
 
         localStorage.setItem('access-token', response.data.token)
+        localStorage.setItem('username', response.data.username.replace(/^(\w+) .+/g, "$1"))
 
         history.push('/dashboard')
       } catch (error) {
