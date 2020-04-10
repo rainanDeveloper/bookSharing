@@ -1,17 +1,16 @@
 import React, {useState, useEffect} from 'react'
 import {useHistory} from 'react-router-dom'
-import {FiSettings, FiTrash2,FiPlus, FiLogOut, FiX, FiSave} from 'react-icons/fi'
+import {FiSettings, FiTrash2,FiPlus, FiLogOut} from 'react-icons/fi'
 import api from '../../services/api'
 import './styles.css'
 import logo from '../../logo.svg'
+import ModalRequest from '../ModalRequest'
+import ModalShare from '../ModalShare'
+
 
 function Dashboard(){
     const [requests, setRequests] = useState([])
     const [modalContent, setModalContent] = useState(<div/>)
-
-    const [book, setBook] = useState('')
-    const [author, setAuthor] = useState('')
-    const [category, setCategory] = useState('')
 
     const history = useHistory()
 
@@ -46,31 +45,10 @@ function Dashboard(){
         }
     }
 
-    function handleCloseModal(){
-        const modal = document.querySelector("div div.modal")
-
-        modal.classList.remove('active')
-    }
-
     function handleModalAddRequest(){
         const modal = document.querySelector("div div.modal")
 
-        setModalContent(
-            <div className="modalContent">
-                <button className="close" onClick={handleCloseModal}><FiX size="20px" color="#aaa"/></button>
-                <header><h1>Solicitação</h1></header>
-                <div className="formSolicitacao">
-                    <form>
-                        <div className="input-group">
-                            <input value={category} onChange={event=>setCategory(event.target.value)} placeholder="Categoria"/>
-                            <input value={author} onChange={event=>setAuthor(event.target.value)} placeholder="Autor"/>
-                        </div>
-                        <input value={book} onChange={event=>setBook(event.target.value)} placeholder="Livro"/>
-                        <button><FiSave size="20px" color="white"/> Salvar</button>
-                    </form>
-                </div>
-            </div>
-        )
+        setModalContent(<ModalRequest></ModalRequest>)
 
         modal.classList.add('active')
     }
@@ -78,22 +56,7 @@ function Dashboard(){
     function handleModalAddShare(){
         const modal = document.querySelector("div div.modal")
 
-        setModalContent(
-            <div className="modalContent">
-                <button className="close" onClick={handleCloseModal}><FiX size="20px" color="#aaa"/></button>
-                <header><h1>Compartilhamento</h1></header>
-                <div className="formCompartilhamento">
-                    <form>
-                        <div className="input-group">
-                            <input value={category} onChange={event=>setCategory(event.target.value)} placeholder="Categoria"/>
-                            <input value={author} onChange={event=>setAuthor(event.target.value)} placeholder="Autor"/>
-                        </div>
-                        <input value={book} onChange={event=>setBook(event.target.value)} placeholder="Livro"/>
-                        <button><FiSave size="20px" color="white"/> Salvar</button>
-                    </form>
-                </div>
-            </div>
-        )
+        setModalContent(ModalShare)
 
         modal.classList.add('active')
     }
