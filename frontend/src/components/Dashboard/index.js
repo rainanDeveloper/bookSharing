@@ -56,7 +56,7 @@ function Dashboard(){
     function handleModalAddShare(){
         const modal = document.querySelector("div div.modal")
 
-        setModalContent(ModalShare)
+        setModalContent(<ModalShare></ModalShare>)
 
         modal.classList.add('active')
     }

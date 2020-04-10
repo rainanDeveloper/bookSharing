@@ -9,6 +9,10 @@ module.exports = {
         const {usr_id} = request
         if(usr_id){
             const {bk_id, rq_distance} = request.body
+
+            if (!bk_id || !rq_distance){
+                return response.status(400).json({success: false, messageError: "You must specify all parameters!"})
+            }
             
             const Book = await book.findByPk(bk_id)
 
