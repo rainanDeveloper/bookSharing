@@ -40,7 +40,7 @@ function Login() {
       event.preventDefault()
 
       try {
-        const response = await api.post('/users/', {
+        await api.post('/users/', {
           usr_login: login,
           usr_pass: pass,
           usr_name: name,
