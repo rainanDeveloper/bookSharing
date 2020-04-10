@@ -3,6 +3,11 @@
     align-items: initial !important;
 }
 
+.App div.generalContent {
+    width: 100%;
+    max-width: 1220px;
+}
+
 .DashBoard {
     width: 100%;
     max-width: 1220px;
