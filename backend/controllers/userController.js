@@ -57,7 +57,7 @@ module.exports = {
                     expiresIn: 3600
                 })
 
-                response.json({auth: true, token: token})
+                response.json({auth: true, token: token, username: User[0].usr_name})
             }
             else{
                 console.log(`Failed login attempt`)

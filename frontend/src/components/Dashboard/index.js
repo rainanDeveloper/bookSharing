@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
-import {Link, useHistory} from 'react-router-dom'
-import {FiSettings, FiTrash2,FiPlus, FiLogOut, FiX} from 'react-icons/fi'
+import {useHistory} from 'react-router-dom'
+import {FiSettings, FiTrash2,FiPlus, FiLogOut, FiX, FiSave} from 'react-icons/fi'
 import api from '../../services/api'
 import './styles.css'
 import logo from '../../logo.svg'
@@ -9,13 +9,14 @@ function Dashboard(){
     const [requests, setRequests] = useState([])
     const [modalContent, setModalContent] = useState(<div/>)
 
-    const [bookInput, setBookInput] = useState('')
-    const [authorInput, setAuthorInput] = useState('')
-    const [categoryInput, setCategoryInput] = useState('')
+    const [book, setBook] = useState('')
+    const [author, setAuthor] = useState('')
+    const [category, setCategory] = useState('')
 
     const history = useHistory()
 
     const accessToken = localStorage.getItem('access-token')
+    const username = localStorage.getItem('username')
 
     if(!accessToken){
         history.push('/')
@@ -61,10 +62,11 @@ function Dashboard(){
                 <div className="formSolicitacao">
                     <form>
                         <div className="input-group">
-                            <input value={categoryInput} onChange={event=>setCategoryInput(event.target.value)} placeholder="Categoria"/>
-                            <input value={authorInput} onChange={event=>setAuthorInput(event.target.value)} placeholder="Autor"/>
+                            <input value={category} onChange={event=>setCategory(event.target.value)} placeholder="Categoria"/>
+                            <input value={author} onChange={event=>setAuthor(event.target.value)} placeholder="Autor"/>
                         </div>
-                        <input value={bookInput} onChange={event=>setBookInput(event.target.value)} placeholder="Livro"/>
+                        <input value={book} onChange={event=>setBook(event.target.value)} placeholder="Livro"/>
+                        <button><FiSave size="20px" color="white"/> Salvar</button>
                     </form>
                 </div>
             </div>
@@ -83,10 +85,11 @@ function Dashboard(){
                 <div className="formCompartilhamento">
                     <form>
                         <div className="input-group">
-                            <input value={categoryInput} onChange={event=>setCategoryInput(event.target.value)} placeholder="Categoria"/>
-                            <input value={authorInput} onChange={event=>setAuthorInput(event.target.value)} placeholder="Autor"/>
+                            <input value={category} onChange={event=>setCategory(event.target.value)} placeholder="Categoria"/>
+                            <input value={author} onChange={event=>setAuthor(event.target.value)} placeholder="Autor"/>
                         </div>
-                        <input value={bookInput} onChange={event=>setBookInput(event.target.value)} placeholder="Livro"/>
+                        <input value={book} onChange={event=>setBook(event.target.value)} placeholder="Livro"/>
+                        <button><FiSave size="20px" color="white"/> Salvar</button>
                     </form>
                 </div>
             </div>
@@ -120,6 +123,7 @@ function Dashboard(){
                 <header>
                     <h1 className="projectTitle"><img src={logo} alt=""/><p>Book<span>Sharing</span></p></h1>
                     <div className="menu">
+                        <h1>Bem vindo {username}!</h1>
                         <div className="dropdown">
                             <button className="AddNew" onClick={handleSwitchDropdown}><FiPlus color="white" size="25px"/></button>
                             <div className="dropdown-content" onMouseLeave={handleSwitchDropdown}>
@@ -129,8 +133,15 @@ function Dashboard(){
                                 </ul>
                             </div>
                         </div>
-                        <div className="profilePic">
-                            <img src="./profile.png" alt=""/>
+                        <div className="dropdown">
+                            <div className="profilePic" onClick={handleSwitchDropdown}>
+                                <img width="100%" src="./profile.png" alt=""/>
+                            </div>
+                            <div className="dropdown-content" onMouseLeave={handleSwitchDropdown}>
+                                <ul>
+                                    <li><button>Alterar Foto de perfil</button></li>
+                                </ul>
+                            </div>
                         </div>
                         <div className="dropdown">
                             <button className="settings" onClick={handleSwitchDropdown}><FiSettings color="white" size="25px"/></button>
