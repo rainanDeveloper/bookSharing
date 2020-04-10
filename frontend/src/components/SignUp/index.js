@@ -51,7 +51,7 @@ function Login() {
           usr_longitude 
         })
 
-        history.push('/login')
+        history.push('/')
       } catch (error) {
         alert('Não foi possível criar usuário!')
       }
