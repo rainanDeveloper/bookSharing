@@ -1,4 +1,5 @@
-import React, {useState} from 'react'
+import Autocomplete from 'react-autocomplete'
+import React, {useState, useEffect} from 'react'
 import api from '../../services/api'
 import {FiX, FiSave} from 'react-icons/fi'
 
@@ -6,7 +7,34 @@ import './styles.css'
 
 function ModalShare(){
 
+    const [authorList, setAuthorList] = useState([])
+    const [categoryList, setCategoryList] = useState([])
+    const [bookList, setBookList] = useState([])
+
+    useEffect(()=>{
+      api.get('/category', {}).then(response=>{
+        let catArray = []
+        const categories = response.data
+        categories.map(category=>{
+          catArray.push({value: category.id, label: category.cat_desc})
+        })
+        setCategoryList(catArray)
+      })
+    }, [])
+
+    useEffect(()=>{
+      api.get('/author', {}).then(response=>{
+        let authArray = []
+        const authors = response.data
+        authors.map(author=>{
+          authArray.push({value: author.id, label: author.auth_name})
+        })
+        setAuthorList(authArray)
+      })
+    }, [])
+
     const [book, setBook] = useState('')
+    const [bookId, setBookId] = useState('')
     const [author, setAuthor] = useState('')
     const [category, setCategory] = useState('')
 
@@ -23,10 +51,48 @@ function ModalShare(){
             <div className="formCompartilhamento">
                 <form>
                     <div className="input-group">
-                        <input value={category} onChange={event=>setCategory(event.target.value)} placeholder="Categoria"/>
-                        <input value={author} onChange={event=>setAuthor(event.target.value)} placeholder="Autor"/>
+                        <Autocomplete
+                        inputProps={{ placeholder: 'Categoria'}}
+                        items={categoryList}
+                          shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                          getItemValue={item => item.label}
+                        renderItem={(item, highlighted) =>
+                            <div
+                              key={item.id}
+                              style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
+                            >
+                              {item.label}
+                            </div>
+                          } value={category} onChange={event=>setCategory(event.target.value)} onSelect={value => setCategory(value)} placeholder="Categoria"/>
+                        <Autocomplete
+                        inputProps={{ placeholder: 'Autor'}}
+                        items={authorList}
+                          shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                          getItemValue={item => item.label}
+                        renderItem={(item, highlighted) =>
+                            <div
+                              key={item.id}
+                              style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
+                            >
+                              {item.label}
+                            </div>
+                          }
+                        value={author} onChange={event=>setAuthor(event.target.value)} onSelect={value => setAuthor(value)} placeholder="Autor"/>
                     </div>
-                    <input value={book} onChange={event=>setBook(event.target.value)} placeholder="Livro"/>
+                    <Autocomplete
+                    inputProps={{ placeholder: 'Livro'}}
+                    wrapperProps={{style: {width:"100%"}}}
+                    items={bookList}
+                      shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
+                      getItemValue={item => item.label}
+                    renderItem={(item, highlighted) =>
+                        <div
+                          key={item.id}
+                          style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
+                        >
+                          {item.label}
+                        </div>
+                      } value={book} onChange={event=>setBook(event.target.value)} onSelect={value => setBook(value)} placeholder="Livro"/>
                     <button><FiSave size="20px" color="white"/> Salvar</button>
                 </form>
             </div>

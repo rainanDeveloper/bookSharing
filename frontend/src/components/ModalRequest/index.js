@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import Autocomplete from 'react-autocomplete'
 import api from '../../services/api'
 import {FiX, FiSave} from 'react-icons/fi'
@@ -10,6 +10,28 @@ function ModalRequest(){
     const [authorList, setAuthorList] = useState([])
     const [categoryList, setCategoryList] = useState([])
     const [bookList, setBookList] = useState([])
+
+    useEffect(()=>{
+      api.get('/category', {}).then(response=>{
+        let catArray = []
+        const categories = response.data
+        categories.map(category=>{
+          catArray.push({value: category.id, label: category.cat_desc})
+        })
+        setCategoryList(catArray)
+      })
+    }, [])
+
+    useEffect(()=>{
+      api.get('/author', {}).then(response=>{
+        let authArray = []
+        const authors = response.data
+        authors.map(author=>{
+          authArray.push({value: author.id, label: author.auth_name})
+        })
+        setAuthorList(authArray)
+      })
+    }, [])
 
     const [book, setBook] = useState('')
     const [bookId, setBookId] = useState('')
@@ -31,7 +53,7 @@ function ModalRequest(){
                     <div className="input-group">
                         <Autocomplete
                         inputProps={{ placeholder: 'Categoria'}}
-                        items={[]}
+                        items={categoryList}
                           shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
                           getItemValue={item => item.label}
                         renderItem={(item, highlighted) =>
@@ -44,7 +66,7 @@ function ModalRequest(){
                           } value={category} onChange={event=>setCategory(event.target.value)} onSelect={value => setCategory(value)} placeholder="Categoria"/>
                         <Autocomplete
                         inputProps={{ placeholder: 'Autor'}}
-                        items={[]}
+                        items={authorList}
                           shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
                           getItemValue={item => item.label}
                         renderItem={(item, highlighted) =>
@@ -60,7 +82,7 @@ function ModalRequest(){
                     <Autocomplete
                     inputProps={{ placeholder: 'Livro'}}
                     wrapperProps={{style: {width:"100%"}}}
-                    items={[]}
+                    items={bookList}
                       shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
                       getItemValue={item => item.label}
                     renderItem={(item, highlighted) =>
