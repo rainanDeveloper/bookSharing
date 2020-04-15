@@ -63,12 +63,12 @@ function ModalRequest(){
             <header><h1>Solicitação</h1></header>
             <div className="formSolicitacao">
                 <form>
-                    <div className="input-group">
+                <div className="input-group">
                         <Autocomplete
                         inputProps={{ placeholder: 'Categoria'}}
                         items={categoryList}
                           shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                          getItemValue={item => item.label}
+                          getItemValue={item => {return item.label+"|-|"+item.id}}
                         renderItem={(item, highlighted) =>
                             <div
                               key={item.id}
@@ -76,12 +76,18 @@ function ModalRequest(){
                             >
                               {item.label}
                             </div>
-                          } value={category} onChange={event=>setCategory(event.target.value)} onSelect={value => setCategory(value)} placeholder="Categoria"/>
+                          } value={category} onChange={event=>{
+                            setCategory(event.target.value)
+                            setCategoryId('')
+                          }} onSelect={value => {
+                            setCategory(value.replace(/^(.{1,})\|\-\|.{1,}$/g, '$1'))
+                            setCategoryId(value.replace(/^.{1,}\|\-\|(.{1,})$/g, '$1'))
+                            }}/>
                         <Autocomplete
                         inputProps={{ placeholder: 'Autor'}}
                         items={authorList}
                           shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                          getItemValue={item => item.label}
+                          getItemValue={item => {return item.label+"|-|"+item.id}}
                         renderItem={(item, highlighted) =>
                             <div
                               key={item.id}
@@ -90,22 +96,32 @@ function ModalRequest(){
                               {item.label}
                             </div>
                           }
-                        value={author} onChange={event=>setAuthor(event.target.value)} onSelect={value => setAuthor(value)} placeholder="Autor"/>
+                        value={author} onChange={event=>{
+                          setAuthor(event.target.value)
+                          setAuthorId('')
+                        }} onSelect={value => {
+                          setAuthor(value.replace(/^(.{1,})\|\-\|.{1,}$/g, '$1'))
+                          setAuthorId(value.replace(/^.{1,}\|\-\|(.{1,})$/g, '$1'))
+                          }}/>
                     </div>
                     <Autocomplete
                     inputProps={{ placeholder: 'Livro', required: true}}
                     wrapperProps={{style: {width:"100%"}}}
                     items={bookList}
                       shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
-                      getItemValue={item => item.label}
+                      getItemValue={item => {return item.label+"|-|"+item.id}}
                     renderItem={(item, highlighted) =>
                         <div
                           key={item.id}
-                          style={{ backgroundColor: highlighted ? '#eee' : 'transparent'}}
+                          data-item={item.id}
+                          style={{ backgroundColor: highlighted ? '#eee' : 'white', padding: '10px'}}
                         >
                           {item.label}
                         </div>
-                      } value={book} onChange={event=>setBook(event.target.value)} onSelect={value => setBook(value)} placeholder="Livro"/>
+                      } value={book} onChange={event=>setBook(event.target.value)} onSelect={value => {
+                        setBook(value.replace(/^(.{1,})\|\-\|.{1,}$/g, '$1'))
+                        setBookId(value.replace(/^.{1,}\|\-\|(.{1,})$/g, '$1'))
+                        }}/>
                     <button><FiSave size="20px" color="white"/> Salvar</button>
                 </form>
             </div>
