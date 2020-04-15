@@ -11,6 +11,13 @@ function ModalRequest(){
     const [categoryList, setCategoryList] = useState([])
     const [bookList, setBookList] = useState([])
 
+    const [book, setBook] = useState('')
+    const [bookId, setBookId] = useState('')
+    const [author, setAuthor] = useState('')
+    const [authorId, setAuthorId] = useState('')
+    const [category, setCategory] = useState('')
+    const [categoryId, setCategoryId] = useState('')
+
     useEffect(()=>{
       api.get('/category', {}).then(response=>{
         let catArray = []
@@ -33,10 +40,16 @@ function ModalRequest(){
       })
     }, [])
 
-    const [book, setBook] = useState('')
-    const [bookId, setBookId] = useState('')
-    const [author, setAuthor] = useState('')
-    const [category, setCategory] = useState('')
+    useEffect(()=>{
+      api.get(`/book/search/?author=${authorId}&category=${categoryId}`, {}).then(response=>{
+        let bookArray = []
+        const books = response.data
+        books.map(book=>{
+          bookArray.push({value: book.id, label: book.bk_title})
+        })
+        setBookList(bookArray)
+      })
+    }, [authorId, categoryId])
 
     function handleCloseModal(){
         const modal = document.querySelector("div div.modal")
