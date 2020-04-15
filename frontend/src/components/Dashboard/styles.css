@@ -46,6 +46,10 @@ div.modal div.modalContent {
     font-size: 15px;
 }
 
+div.modal div.modalContent input{
+    margin: 0;
+}
+
 div.modal div.modalContent div{
     padding: 10px 0;
 }

@@ -1,4 +1,5 @@
 const { book } = require('../models/')
+const { Op } = require("sequelize")
 
 module.exports = {
     async store(request, response){
@@ -65,6 +66,43 @@ module.exports = {
             else{
                 response.status(400).json({success: false, messageError: "Book id not found!"})
             }
+        }
+    },
+    async search(request, response){
+        const {author, category} = request.query
+
+        let whereStatement = {}
+
+        if (author && category){
+            whereStatement = {
+                bk_author: author,
+                bk_category: category
+            }
+        }
+        else{
+            if(author){
+                whereStatement = {
+                    bk_author: author
+                }
+            }
+            if(category){
+                whereStatement = {
+                    bk_category: category
+                }    
+            }
+        }
+
+        try {
+            const Books = await book.findAll({
+                where: whereStatement
+            })
+
+            console.log("Request successfully found data!")
+
+            return response.json(Books)
+        } catch (error) {
+            console.log(`Error during data search: ${error}`)
+            return response.status(500).json({success: false, messageError: "Error during data search"})
         }
     }
 }

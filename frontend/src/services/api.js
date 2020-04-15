@@ -1,5 +1,6 @@
 import axios from 'axios'
+import config from './config.json'
 
-const api = axios.create({baseURL: 'http://192.168.1.105:3333/'})
+const api = axios.create({baseURL: config.backendUrl})
 
 export default api
