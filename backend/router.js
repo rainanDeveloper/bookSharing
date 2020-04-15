@@ -40,6 +40,7 @@ routes.delete('/category/:cat_id', categoryController.delete)
 routes.post('/book', bookController.store)
 routes.get('/book/:bk_id/show', bookController.show)
 routes.get('/book', bookController.list)
+routes.get('/book/search/', bookController.search)
 routes.delete('/book/:bk_id', userController.validateJWT, bookController.delete)
 
 //CRUD Book requests

@@ -80,7 +80,7 @@ function ModalShare(){
                         value={author} onChange={event=>setAuthor(event.target.value)} onSelect={value => setAuthor(value)} placeholder="Autor"/>
                     </div>
                     <Autocomplete
-                    inputProps={{ placeholder: 'Livro'}}
+                    inputProps={{ placeholder: 'Livro', required: true}}
                     wrapperProps={{style: {width:"100%"}}}
                     items={bookList}
                       shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}

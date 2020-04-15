@@ -48,7 +48,7 @@ function ModalRequest(){
         <div className="modalContent">
             <button className="close" onClick={handleCloseModal}><FiX size="20px" color="#aaa"/></button>
             <header><h1>Solicitação</h1></header>
-            <div className="formCompartilhamento">
+            <div className="formSolicitacao">
                 <form>
                     <div className="input-group">
                         <Autocomplete
@@ -80,7 +80,7 @@ function ModalRequest(){
                         value={author} onChange={event=>setAuthor(event.target.value)} onSelect={value => setAuthor(value)} placeholder="Autor"/>
                     </div>
                     <Autocomplete
-                    inputProps={{ placeholder: 'Livro'}}
+                    inputProps={{ placeholder: 'Livro', required: true}}
                     wrapperProps={{style: {width:"100%"}}}
                     items={bookList}
                       shouldItemRender={(item, value) => item.label.toLowerCase().indexOf(value.toLowerCase()) > -1}
