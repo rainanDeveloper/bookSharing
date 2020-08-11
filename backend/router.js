@@ -5,9 +5,14 @@ const categoryController = require('./controllers/categoryController')
 const bookController = require('./controllers/bookController')
 const bkRequestController = require('./controllers/bookRequestController')
 const bkShareController = require('./controllers/bookShareController')
+const path = require('path')
 
 
 const routes = express.Router()
+
+routes.use('/', express.static(path.join(__dirname, '../frontend/build')))
+routes.use('/SignUp', express.static(path.join(__dirname, '../frontend/build')))
+routes.use('/dashboard', express.static(path.join(__dirname, '../frontend/build')))
 
 // CRUD Users
 
