@@ -1,7 +1,7 @@
 const { user } = require('../models/')
 const jwt = require('jsonwebtoken')
 const config = require('../config/config.json')
-
+const crypto = require('crypto')
 
 module.exports = {
     async store(request, response){
@@ -14,10 +14,16 @@ module.exports = {
         User = await user.findOne({where:{usr_email: usr_email}})
 
         if (!User){
+            const salt = crypto.randomBytes(16).toString('hex')
+            var hash = crypto.createHash('sha256').update(usr_pass+salt).digest('hex')
+            hash = crypto.createHash('sha256').update(hash+salt).digest('hex')
+            hash = crypto.createHash('sha256').update(hash+salt).digest('hex')
+
             try {
                 User = await user.create({
                     usr_login: usr_login,
-                    usr_pass:usr_pass,
+                    usr_pass:hash,
+                    usr_salt: salt,
                     usr_name:usr_name,
                     usr_email:usr_email,
                     usr_cpf:usr_cpf,
