@@ -17,6 +17,11 @@ module.exports = {
           type: DataTypes.CHAR,
           length: 64
         },
+        usr_salt: {
+          allowNull: false,
+          type: DataTypes.CHAR,
+          length: 32
+        },
         usr_name: {
           allowNull: false,
           type: DataTypes.STRING,
