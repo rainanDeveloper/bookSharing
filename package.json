@@ -1,0 +1,12 @@
+{
+  "name": "bookSharing",
+  "version": "1.0.0",
+  "description": "Project bookSharing",
+  "main": "index.js",
+  "repository": "https://github.com/rainanDeveloper/bookSharing.git",
+  "author": "Rainan Miranda de Jesus <jesus.rainan@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "install": "./install.sh"
+  }
+}
