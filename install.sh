@@ -2,6 +2,10 @@
 
 cd ./frontend
 
+touch ./src/services/config.json
+
+echo '{"backendUrl":"http://localhost:3333"}' > ./src/services/config.json
+
 npm install
 
 npm run build
@@ -9,6 +13,8 @@ npm run build
 cd ../backend/
 
 npm install
+
+mkdir ./config/
 
 touch ./config/config.json
 
