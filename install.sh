@@ -8,7 +8,7 @@ echo '{"backendUrl":"http://localhost:3333"}' > ./src/services/config.json
 
 npm install
 
-npm run build
+yarn build
 
 cd ../backend/
 
@@ -20,6 +20,6 @@ touch ./config/config.json
 
 node generateConfig.js > ./config/config.json
 
-npm sequelize-cli db:create
+yarn sequelize-cli db:create
 
-npm sequelize-cli db:migrate
+yarn sequelize-cli db:migrate
